@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'Trirong Light';
+  src: url('@/assets/fonts/TRIRONG-LIGHT.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.home-banner {
+  width: $w-full;
+  position: relative;
+  .banner-image {
+    width: $w-full;
+  }
+  .banner-actions {
+    position: absolute;
+    top: 48rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    button {
+      width: $w-10 * 2.5;
+      border-radius: $rounded-md;
+      span {
+        font-family: 'Trirong Light', sans-serif;
+        font-size: $text-2xl;
+      }
+      &:nth-child(1) {
+        margin-bottom: $m-1;
+      }
+    }
+  }
+}

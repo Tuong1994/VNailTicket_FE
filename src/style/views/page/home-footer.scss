@@ -1,0 +1,25 @@
+.home-footer {
+  background: url('@/assets/images/Footer.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  * {
+    color: $text-white;
+  }
+  .footer-title {
+    color: $text-white !important;
+  }
+  .footer-items {
+    padding: $p-2 0;
+    .items-action {
+      border: unset;
+      background: transparent;
+      transition: opacity $transition-time-md $transition-fn;
+      &:hover {
+        opacity: 0.6;
+      }
+      .action-icon {
+        margin-bottom: $m-1;
+      }
+    }
+  }
+}

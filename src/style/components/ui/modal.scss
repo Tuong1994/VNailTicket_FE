@@ -1,0 +1,120 @@
+.modal-backdrop {
+  width: $w-full;
+  height: $h-screen;
+  background: $bg-black-rgba-md;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  opacity: 0;
+  transition: all $transition-time-sm $transition-fn;
+}
+
+.modal-backdrop-active {
+  opacity: 1;
+  animation: fade $transition-time-sm $transition-fn;
+}
+
+.modal {
+  border-radius: $rounded;
+  background: $bg-white;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  z-index: 15;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: all $transition-time-md $transition-fn;
+  .modal-head {
+    padding: $p-2;
+    column-gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-bottom: 0.5px solid $bg-gray;
+    .head-close-action {
+      border: unset;
+      background: transparent;
+      path {
+        transition: opacity $transition-time-sm $transition-fn;
+      }
+      &:hover path {
+        opacity: 0.6;
+      }
+    }
+  }
+  .modal-head-flex {
+    justify-content: space-between;
+  }
+  .modal-body {
+    padding: $p-2;
+    max-height: calc($h-screen - 150px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .modal-foot {
+    padding: $p-2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border-top: 0.5px solid $bg-gray;
+    button:nth-child(1) {
+      margin-right: $m-1;
+    }
+  }
+}
+
+.modal-active {
+  top: 50%;
+  opacity: 1;
+  animation: fadeInTop $transition-time-md $transition-fn;
+}
+
+// Size
+.modal-sm {
+  width: $w-10 * 4;
+  @include respond(mdTablet) {
+    width: $w-10 * 6;
+  }
+  @include respond(lgPhone) {
+    width: $w-10 * 5;
+  }
+  @include respond(mdPhone) {
+    width: $w-10 * 3.6;
+  }
+  @include respond(smPhone) {
+    width: $w-10 * 3;
+  }
+}
+
+.modal-md {
+  width: $w-10 * 6;
+  @include respond(mdTablet) {
+    width: $w-10 * 6;
+  }
+  @include respond(lgPhone) {
+    width: $w-10 * 5;
+  }
+  @include respond(mdPhone) {
+    width: $w-10 * 3.6;
+  }
+  @include respond(smPhone) {
+    width: $w-10 * 3;
+  }
+}
+
+.modal-lg {
+  width: $w-10 * 8;
+  @include respond(mdTablet) {
+    width: $w-10 * 6;
+  }
+  @include respond(lgPhone) {
+    width: $w-10 * 5;
+  }
+  @include respond(mdPhone) {
+    width: $w-10 * 3.6;
+  }
+  @include respond(smPhone) {
+    width: $w-10 * 3;
+  }
+}

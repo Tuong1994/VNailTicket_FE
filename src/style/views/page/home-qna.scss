@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Abril Regular';
+  src: url('@/assets/fonts/AbrilFatface-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.home-qna {
+  width: $w-full;
+  .qna-item {
+    margin: $m-2 0;
+    .item-label {
+      padding: 0;
+      .label-title {
+        span {
+          color: $text-blue;
+        }
+      }
+      .label-icon {
+        width: $w-1 + 0.5;
+        height: $h-1 + 0.5;
+        margin-right: $m-2;
+      }
+    }
+    .item-label-active {
+      .label-title {
+        span {
+          color: $text-red;
+        }
+      }
+    }
+    .item-content {
+      .content-inner {
+        padding: 1rem 0;
+        text-align: justify;
+      }
+    }
+  }
+}

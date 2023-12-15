@@ -1,0 +1,312 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  .pagination-content {
+    @include respond(mdTablet) {
+      margin-bottom: $m-1;
+    }
+  }
+  .pagination-range {
+    padding: $p-1 - 0.5;
+    display: flex;
+    align-items: center;
+    .range-simple-content {
+      margin: 0 $m-1;
+    }
+    .range-group {
+      display: flex;
+      align-items: center;
+      @include respond(mdPhone) {
+        display: none;
+      }
+    }
+    .range-btn,
+    .range-dot {
+      width: $w-3;
+      height: $h-3;
+      margin: 0 $m-1 - 0.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .range-btn {
+      border: 0.5px solid transparent;
+      background: transparent;
+      transition: all $transition-time-sm $transition-fn;
+      * {
+        transition: all $transition-time-sm $transition-fn;
+      }
+    }
+    .range-dot {
+      font-size: $text-xxl;
+    }
+    .range-btn-disabled {
+      cursor: not-allowed;
+      user-select: none;
+      opacity: 0.6;
+    }
+  }
+  @include respond(mdTablet) {
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+.pagination-flex-between {
+  justify-content: space-between;
+}
+
+// Shape
+.pagination-square {
+  .pagination-range {
+    border-radius: $rounded;
+    .range-btn {
+      border-radius: $rounded;
+    }
+  }
+}
+
+.pagination-round {
+  .pagination-range {
+    border-radius: $rounded-xxl;
+    .range-btn {
+      border-radius: $rounded-full;
+    }
+  }
+}
+
+// Color
+.pagination-color {
+  .pagination-range {
+    .range-simple-content {
+      color: $text-white;
+    }
+    .range-btn,
+    .range-dot {
+      color: $text-white;
+      * {
+        color: $text-white;
+      }
+    }
+    .range-btn:hover {
+      background: $bg-white;
+      color: $text-black;
+      * {
+        color: $text-black;
+      }
+    }
+    .range-btn-active {
+      background: $bg-white;
+      color: $text-black;
+    }
+    .range-btn-disabled {
+      &:hover {
+        color: $text-white !important;
+        background: transparent !important;
+        * {
+          color: $text-white !important;
+        }
+      }
+    }
+  }
+}
+
+.pagination-blue {
+  .pagination-range {
+    background: $bg-blue;
+  }
+}
+
+.pagination-green {
+  .pagination-range {
+    background: $bg-green;
+  }
+}
+
+.pagination-red {
+  .pagination-range {
+    background: $bg-red;
+  }
+}
+
+.pagination-orange {
+  .pagination-range {
+    background: $bg-orange;
+  }
+}
+
+.pagination-yellow {
+  .pagination-range {
+    background: $bg-yellow;
+  }
+}
+
+.pagination-purple {
+  .pagination-range {
+    background: $bg-purple;
+  }
+}
+
+.pagination-pink {
+  .pagination-range {
+    background: $bg-pink;
+  }
+}
+
+.pagination-black {
+  .pagination-range {
+    background: $bg-black;
+  }
+}
+
+// Ghost
+.pagination-ghost {
+  .pagination-range {
+    background: $bg-white;
+    .range-btn,
+    .range-dot {
+      color: $text-black;
+      * {
+        color: $text-black;
+      }
+    }
+    .range-btn-disabled {
+      &:hover {
+        color: $text-black !important;
+        border-color: transparent !important;
+        * {
+          color: $text-black !important;
+        }
+      }
+    }
+  }
+}
+
+.pagination-ghost-blue {
+  .pagination-range {
+    .range-btn:hover {
+      border-color: $bg-blue;
+      color: $text-blue;
+      * {
+        color: $text-blue;
+      }
+    }
+    .range-btn-active {
+      border-color: $bg-blue;
+      color: $text-blue;
+    }
+  }
+}
+
+.pagination-ghost-green {
+  .pagination-range {
+    .range-btn:hover {
+      border-color: $bg-green;
+      color: $text-green;
+      * {
+        color: $text-green;
+      }
+    }
+    .range-btn-active {
+      border-color: $bg-green;
+      color: $text-green;
+    }
+  }
+}
+
+.pagination-ghost-red {
+  .pagination-range {
+    .range-btn:hover {
+      border-color: $bg-red;
+      color: $text-red;
+      * {
+        color: $text-red;
+      }
+    }
+    .range-btn-active {
+      border-color: $bg-red;
+      color: $text-red;
+    }
+  }
+}
+
+.pagination-ghost-orange {
+  .pagination-range {
+    .range-btn:hover {
+      border-color: $bg-orange;
+      color: $text-orange;
+      * {
+        color: $text-orange;
+      }
+    }
+    .range-btn-active {
+      border-color: $bg-orange;
+      color: $text-orange;
+    }
+  }
+}
+
+.pagination-ghost-yellow {
+  .pagination-range {
+    .range-btn:hover {
+      border-color: $bg-yellow;
+      color: $text-yellow;
+      * {
+        color: $text-yellow;
+      }
+    }
+    .range-btn-active {
+      border-color: $bg-yellow;
+      color: $text-yellow;
+    }
+  }
+}
+
+.pagination-ghost-purple {
+  .pagination-range {
+    .range-btn:hover {
+      border-color: $bg-purple;
+      color: $text-purple;
+      * {
+        color: $text-purple;
+      }
+    }
+    .range-btn-active {
+      border-color: $bg-purple;
+      color: $text-purple;
+    }
+  }
+}
+
+.pagination-ghost-pink {
+  .pagination-range {
+    .range-btn:hover {
+      border-color: $bg-pink;
+      color: $text-pink;
+      * {
+        color: $text-pink;
+      }
+    }
+    .range-btn-active {
+      border-color: $bg-pink;
+      color: $text-pink;
+    }
+  }
+}
+
+.pagination-ghost-black {
+  .pagination-range {
+    .range-btn:hover {
+      border-color: $bg-black;
+      color: $text-black;
+      * {
+        color: $text-black;
+      }
+    }
+    .range-btn-active {
+      border-color: $bg-black;
+      color: $text-black;
+    }
+  }
+}

@@ -1,0 +1,149 @@
+.image {
+  width: max-content;
+  position: relative;
+  .image-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $bg-slate;
+    border-radius: $rounded;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    animation: fade $transition-time-md $transition-fn;
+  }
+  .image-view {
+    position: relative;
+    border-radius: $rounded;
+    overflow: hidden;
+    user-select: none;
+    &:hover .view-actions {
+      opacity: 1;
+    }
+    .view-area {
+      width: $w-full;
+      height: $h-full;
+    }
+    .view-actions {
+      width: $w-full;
+      height: $h-full;
+      background: $bg-black-rgba-md;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity $transition-time-md $transition-fn;
+      .actions-icon {
+        cursor: pointer;
+        transition: opacity $transition-time-md $transition-fn;
+        path {
+          color: $text-white;
+        }
+        &:nth-child(2) {
+          margin-left: $m-1;
+        }
+        &:hover {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+  .image-view-loaded {
+    animation: fade $transition-time-md $transition-fn;
+  }
+}
+
+// Object fit
+.image-fill {
+  .view-area {
+    object-fit: fill;
+  }
+}
+
+.image-cover {
+  .view-area {
+    object-fit: cover;
+  }
+}
+
+.image-contain {
+  .view-area {
+    object-fit: contain;
+  }
+}
+
+.image-none {
+  .view-area {
+    object-fit: none;
+  }
+}
+
+// Viewer
+.image-viewer {
+  width: $w-full;
+  height: $h-screen;
+  background: $bg-black-rgba-md;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity $transition-time-md $transition-fn;
+  .viewer-head {
+    height: $h-5;
+    padding: 0 $p-2;
+    background: $bg-black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .head-action {
+      margin: 0 $m-2;
+      cursor: pointer;
+      border: unset;
+      background: transparent;
+      transition: opacity $transition-time-md $transition-fn;
+      &:hover {
+        opacity: 0.6;
+      }
+      path {
+        color: $text-white;
+      }
+    }
+    .head-action-disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+  .viewer-body {
+    height: calc($h-screen - $h-5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    .body-image {
+      width: $w-10 * 6;
+      height: $h-10 * 4;
+      object-fit: contain;
+      border: 0.5px solid $bg-slate;
+      border-radius: $rounded;
+      transition: transform $transition-time-md $transition-fn;
+      @include respond(smTablet) {
+        width: $w-10 * 4;
+        height: $h-10 * 3;
+      }
+      @include respond(mdPhone) {
+        width: $w-10 * 3;
+        height: $h-10 * 2;
+      }
+    }
+  }
+}
+.image-viewer-active {
+  opacity: 1;
+  animation: fade $transition-time-md $transition-fn;
+}

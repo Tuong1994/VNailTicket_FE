@@ -1,0 +1,176 @@
+// Title
+.title {
+  margin-bottom: $m-1;
+  * {
+    margin: 0;
+  }
+}
+
+// Level
+.title-level-1 {
+  font-size: $text-xxl;
+  font-weight: $font-semibold;
+}
+
+.title-level-2 {
+  font-size: $text-4xl;
+  font-weight: $font-semibold;
+}
+
+.title-level-3 {
+  font-size: $text-3xl;
+  font-weight: $font-semibold;
+}
+
+.title-level-4 {
+  font-size: $text-2xl;
+  font-weight: $font-medium;
+}
+
+.title-level-5 {
+  font-size: $text-xl;
+  font-weight: $font-medium;
+}
+
+.title-level-6 {
+  font-size: $text-lg;
+  font-weight: $font-medium;
+}
+
+// Underline
+.title-underline {
+  text-decoration: underline;
+}
+
+// Remove
+.title-remove {
+  text-decoration: line-through;
+}
+
+// Italic
+.title-italic {
+  font-style: italic;
+}
+
+// Align
+.title-left {
+  text-align: left;
+}
+
+.title-center {
+  text-align: center;
+}
+
+.title-right {
+  text-align: right;
+}
+
+.title-justify {
+  text-align: justify;
+}
+
+// Variant
+.title-secondary {
+  color: $text-gray;
+  * {
+    color: $text-gray;
+  }
+}
+
+.title-success {
+  color: $text-green;
+  * {
+    color: $text-green;
+  }
+}
+
+.title-warning {
+  color: $text-orange;
+  * {
+    color: $text-orange;
+  }
+}
+
+.title-danger {
+  color: $text-red;
+  * {
+    color: $text-red;
+  }
+}
+
+// Paragraph
+.paragraph {
+  line-height: 25px;
+  * {
+    margin: 0;
+  }
+}
+
+// Strong
+.paragraph-strong {
+  font-weight: $font-semibold;
+  * {
+    font-weight: $font-semibold;
+  }
+}
+
+// Underline
+.paragraph-underline {
+  text-decoration: underline;
+}
+
+// Remove
+.paragraph-remove {
+  text-decoration: line-through;
+}
+
+// Italic
+.paragraph-italic {
+  font-style: italic;
+}
+
+// Align
+.paragraph-left {
+  text-align: left;
+}
+
+.paragraph-center {
+  text-align: center;
+}
+
+.paragraph-right {
+  text-align: right;
+}
+
+.paragraph-justify {
+  text-align: justify;
+}
+
+// Variant
+.paragraph-secondary {
+  color: $text-gray;
+  * {
+    color: $text-gray;
+  }
+}
+
+.paragraph-success {
+  color: $text-green;
+  * {
+    color: $text-green;
+  }
+}
+
+.paragraph-warning {
+  color: $text-orange;
+  * {
+    color: $text-orange;
+  }
+}
+
+.paragraph-danger {
+  color: $text-red;
+  * {
+    color: $text-red;
+  }
+}

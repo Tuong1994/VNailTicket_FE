@@ -1,0 +1,259 @@
+.button {
+  min-width: max-content;
+  border: 0.5px solid $bg-gray;
+  border-radius: $rounded;
+  background: $bg-slate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all $transition-time-xs $transition-fn;
+  * {
+    margin: 0;
+    transition: all $transition-time-xs $transition-fn;
+  }
+  &::after,
+  &::before {
+    content: '';
+    width: calc($w-full);
+    height: calc($h-full);
+    border-radius: $rounded;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: all $transition-time-xs $transition-fn;
+  }
+  &::after {
+    background: $bg-black-rgba-xs;
+    z-index: -1;
+  }
+  &::before {
+    background: $bg-white-rgba-xs;
+    z-index: 1;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+  &:active::after {
+    width: calc($w-full + 10px);
+    height: calc($h-full + 10px);
+    opacity: 1;
+  }
+  .button-loading-icon {
+    margin-right: $m-1 - 0.5;
+  }
+}
+
+.button-color {
+  *,
+  path {
+    color: $text-white;
+  }
+}
+
+.button-ghost {
+  background: $bg-white;
+}
+
+// Size
+.button-sm {
+  padding: $p-1 - 0.8 $p-1 - 0.6;
+  font-size: $text-xs;
+  * {
+    font-size: $text-xs;
+  }
+}
+
+.button-md {
+  padding: $p-1 - 0.6 $p-1 - 0.2;
+}
+
+.button-lg {
+  padding: $p-1 - 0.4 $p-1;
+  font-size: $text-md;
+  * {
+    font-size: $text-md;
+  }
+}
+
+// Color
+.button-blue {
+  border-color: $bg-blue;
+  background: $bg-blue;
+  &::after {
+    background: $bg-blue-rgba-sm;
+  }
+}
+
+.button-green {
+  border-color: $bg-green;
+  background: $bg-green;
+  &::after {
+    background: $bg-green-rgba-sm;
+  }
+}
+
+.button-red {
+  border-color: $bg-red;
+  background: $bg-red;
+  &::after {
+    background: $bg-red-rgba-sm;
+  }
+}
+
+.button-orange {
+  border-color: $bg-orange;
+  background: $bg-orange;
+  &::after {
+    background: $bg-orange-rgba-sm;
+  }
+}
+
+.button-yellow {
+  border-color: $bg-yellow;
+  background: $bg-yellow;
+  &::after {
+    background: $bg-yellow-rgba-sm;
+  }
+}
+
+.button-purple {
+  border-color: $bg-purple;
+  background: $bg-purple;
+  &::after {
+    background: $bg-purple-rgba-sm;
+  }
+}
+
+.button-pink {
+  border-color: $bg-pink;
+  background: $bg-pink;
+  &::after {
+    background: $bg-pink-rgba-sm;
+  }
+}
+
+.button-black {
+  border-color: $bg-black;
+  background: $bg-black;
+  &::after {
+    background: $bg-black-rgba-xs;
+  }
+}
+
+// Ghost
+.button-ghost-blue {
+  border-color: $bg-blue;
+  *,
+  path {
+    color: $text-blue;
+  }
+  &::after {
+    background: $bg-blue-rgba-sm;
+  }
+}
+
+.button-ghost-green {
+  border-color: $bg-green;
+  *,
+  path {
+    color: $text-green;
+  }
+  &::after {
+    background: $bg-green-rgba-sm;
+  }
+}
+
+.button-ghost-red {
+  border-color: $bg-red;
+  *,
+  path {
+    color: $text-red;
+  }
+  &::after {
+    background: $bg-red-rgba-sm;
+  }
+}
+
+.button-ghost-orange {
+  border-color: $bg-orange;
+  *,
+  path {
+    color: $text-orange;
+  }
+  &::after {
+    background: $bg-orange-rgba-sm;
+  }
+}
+
+.button-ghost-yellow {
+  border-color: $bg-yellow;
+  *,
+  path {
+    color: $text-yellow;
+  }
+  &::after {
+    background: $bg-yellow-rgba-sm;
+  }
+}
+
+.button-ghost-purple {
+  border-color: $bg-purple;
+  *,
+  path {
+    color: $text-purple;
+  }
+  &::after {
+    background: $bg-purple-rgba-sm;
+  }
+}
+
+.button-ghost-pink {
+  border-color: $bg-pink;
+  *,
+  path {
+    color: $text-pink;
+  }
+  &::after {
+    background: $bg-pink-rgba-sm;
+  }
+}
+
+.button-ghost-black {
+  border-color: $bg-black;
+  *,
+  path {
+    color: $text-black;
+  }
+  &::after {
+    background: $bg-black-rgba-xs;
+  }
+}
+
+// Loading
+.button-loading {
+  user-select: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+  &::after,
+  &::before {
+    content: unset;
+  }
+}
+
+// Disabled
+.button-disabled {
+  user-select: none;
+  cursor: not-allowed;
+  background: $bg-slate;
+  border-color: $bg-gray;
+  * {
+    color: $text-gray;
+  }
+  &::after,
+  &::before {
+    content: unset;
+  }
+}

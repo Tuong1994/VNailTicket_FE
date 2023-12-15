@@ -1,0 +1,60 @@
+// Horizontal
+.divider-horizontal {
+  width: $w-full;
+  height: 1px;
+  margin: $m-2 0;
+  background: $bg-gray;
+  position: relative;
+  .horizontal-content {
+    width: max-content;
+    padding: $p-1 - 0.2;
+    background: $bg-white;
+    font-weight: $font-medium;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%);
+    * {
+      font-weight: $font-medium;
+    }
+  }
+}
+
+// Plain
+.divider-horizontal-plain {
+  .horizontal-content {
+    font-weight: $font-regular;
+    * {
+      font-weight: $font-regular;
+    }
+  }
+}
+
+// Placement
+.divider-horizontal-left {
+  .horizontal-content {
+    left: 10px;
+  }
+}
+
+.divider-horizontal-center {
+  .horizontal-content {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.divider-horizontal-right {
+  .horizontal-content {
+    right: 10px;
+  }
+}
+
+// Vertical
+.divider-vertical {
+  width: 1px;
+  max-height: $h-full;
+  background: $bg-gray;
+  margin: 0 $m-1;
+}

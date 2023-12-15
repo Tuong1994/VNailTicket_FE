@@ -1,0 +1,107 @@
+.avatar {
+  border: 0.5px solid transparent;
+  position: relative;
+  .avatar-content {
+    width: $w-full;
+    height: $h-full;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    * {
+      margin: 0;
+    }
+  }
+  .avatar-dot {
+    width: $w-1;
+    height: $h-1;
+    border-radius: $rounded-full;
+    background: $bg-red;
+    border: 0.5px solid $bg-white;
+    position: absolute;
+    top: -3px;
+    right: -1px;
+    z-index: 1;
+  }
+  .avatar-badge {
+    width: $w-2;
+    height: $h-2;
+    border-radius: $rounded-full;
+    background: $bg-red;
+    border: 0.5px solid $bg-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $text-xxs;
+    color: $text-white;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    z-index: 1;
+  }
+  .avatar-badge-radius {
+    width: max-content;
+    padding: $p-1 - 0.8 $p-1 - 0.6;
+    border-radius: $rounded-xxl;
+    right: unset;
+    left: 75%;
+  }
+}
+
+// Shape
+.avatar-square {
+  border-radius: $rounded-md;
+}
+
+.avatar-circle {
+  border-radius: $rounded-full;
+}
+
+// Color
+.avatar-color {
+  .avatar-content {
+    * {
+      color: $text-white;
+    }
+  }
+}
+
+.avatar-blue {
+  border-color: $bg-blue;
+  background: $bg-blue;
+}
+
+.avatar-green {
+  border-color: $bg-green;
+  background: $bg-green;
+}
+
+.avatar-red {
+  border-color: $bg-red;
+  background: $bg-red;
+}
+
+.avatar-orange {
+  border-color: $bg-orange;
+  background: $bg-orange;
+}
+
+.avatar-yellow {
+  border-color: $bg-yellow;
+  background: $bg-yellow;
+}
+
+.avatar-pink {
+  border-color: $bg-pink;
+  background: $bg-pink;
+}
+
+.avatar-purple {
+  border-color: $bg-purple;
+  background: $bg-purple;
+}
+
+.avatar-black {
+  border-color: $bg-black;
+  background: $bg-black;
+}

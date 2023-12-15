@@ -1,0 +1,140 @@
+.badge {
+  width: max-content;
+  padding: $p-1 - 0.8 $p-1 - 0.2;
+  border: 0.5px solid $bg-gray;
+  background: $bg-slate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: $text-xs;
+  * {
+    margin: 0;
+    font-size: $text-xs;
+  }
+}
+
+// Shape
+.badge-round {
+  border-radius: $rounded-xxl;
+}
+
+.badge-square {
+  border-radius: $rounded;
+}
+
+// Color
+.badge-color {
+  color: $text-white;
+  * {
+    color: $text-white;
+  }
+}
+
+.badge-blue {
+  background: $bg-blue;
+  border-color: $bg-blue;
+}
+
+.badge-green {
+  background: $bg-green;
+  border-color: $bg-green;
+}
+
+.badge-red {
+  background: $bg-red;
+  border-color: $bg-red;
+}
+
+.badge-orange {
+  background: $bg-orange;
+  border-color: $bg-orange;
+}
+
+.badge-yellow {
+  background: $bg-yellow;
+  border-color: $bg-yellow;
+}
+
+.badge-purple {
+  background: $bg-purple;
+  border-color: $bg-purple;
+}
+
+.badge-pink {
+  background: $bg-pink;
+  border-color: $bg-pink;
+}
+
+.badge-black {
+  background: $bg-black;
+  border-color: $bg-black;
+}
+
+// Ghost
+.badge-ghost {
+  background: $bg-white;
+}
+
+.badge-ghost-blue {
+  border-color: $bg-blue;
+  color: $text-blue;
+  * {
+    color: $text-blue;
+  }
+}
+
+.badge-ghost-green {
+  border-color: $bg-green;
+  color: $text-green;
+  * {
+    color: $text-green;
+  }
+}
+
+.badge-ghost-red {
+  border-color: $bg-red;
+  color: $text-red;
+  * {
+    color: $text-red;
+  }
+}
+
+.badge-ghost-orange {
+  border-color: $bg-orange;
+  color: $text-orange;
+  * {
+    color: $text-orange;
+  }
+}
+
+.badge-ghost-yellow {
+  border-color: $bg-yellow;
+  color: $text-yellow;
+  * {
+    color: $text-yellow;
+  }
+}
+
+.badge-ghost-purple {
+  border-color: $bg-purple;
+  color: $text-purple;
+  * {
+    color: $text-purple;
+  }
+}
+
+.badge-ghost-pink {
+  border-color: $bg-pink;
+  color: $text-pink;
+  * {
+    color: $text-pink;
+  }
+}
+
+.badge-ghost-black {
+  border-color: $bg-black;
+  color: $text-black;
+  * {
+    color: $text-black;
+  }
+}
