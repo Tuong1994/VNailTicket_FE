@@ -1,43 +1,24 @@
 @import './home-banner.scss';
 @import './home-qna.scss';
-@import './home-partners.scss';
 @import './home-images.scss';
 @import './home-footer.scss';
-
-@font-face {
-  font-family: 'Abril Regular';
-  src: url('@/assets/fonts/AbrilFatface-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Trirong Bold';
-  src: url('@/assets/fonts/TRIRONG-BOLD.TTF') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
 
 .home {
   font-family: 'Trirong Bold', sans-serif;
   * {
     font-family: 'Trirong Bold', sans-serif;
   }
-  .home-content {
-    width: $w-10 * 6;
-    margin: auto;
-    .section {
-      padding: $p-5 $p-1 + 0.5;
-      .section-title {
-        font-family: 'Abril Regular', sans-serif;
-        font-size: $text-large;
-        color: $text-blue;
-      }
+  .section {
+    padding: $p-5 $p-1 + 0.5;
+    .section-title {
+      font-family: 'Abril Regular', sans-serif;
+      font-size: $text-large;
+      color: $text-blue;
     }
-    .content-section-divide {
-      width: $w-full;
-      height: $h-1 + 0.5;
-      background: $bg-gray;
-    }
+  }
+  .home-section-divide {
+    width: $w-full;
+    height: $h-1 + 0.5;
+    background: $bg-gray;
   }
 }

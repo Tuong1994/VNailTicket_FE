@@ -1,0 +1,46 @@
+@import './admin-qna.scss';
+@import './admin-gallery.scss';
+@import './admin-contact.scss';
+
+.admin {
+  font-family: 'Trirong Medium', sans-serif;
+  * {
+    font-family: 'Trirong Medium', sans-serif;
+  }
+  .admin-content {
+    padding: $p-1 + 0.5;
+    .content-control {
+      margin-bottom: $m-1;
+    }
+  }
+  .admin-header {
+    padding: $p-1 - 0.5 $p-2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to right, $bg-light-blue, $bg-blue);
+    * {
+      font-family: 'Abril Regular', sans-serif;
+      color: $text-white;
+    }
+    .header-name {
+      margin: 0;
+      font-weight: 400;
+    }
+    .header-icon {
+      background: transparent;
+      border: unset;
+      display: flex;
+      align-items: center;
+      transition: opacity $transition-time-md $transition-time-lg;
+      &:hover {
+        opacity: 0.6;
+      }
+      img {
+        width: $w-2;
+        height: $h-2;
+        margin-left: $m-1;
+      }
+    }
+  }
+}

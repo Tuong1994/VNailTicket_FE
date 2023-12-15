@@ -6,8 +6,6 @@ const { Section, Typography, Accordion } = UI
 
 const { Title, Paragraph } = Typography
 
-const isCollapsed = ref<boolean>(false)
-
 const activeIds = ref<string[]>([])
 
 const items = computed(() => [

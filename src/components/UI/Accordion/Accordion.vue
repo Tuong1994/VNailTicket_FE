@@ -15,6 +15,7 @@ export interface AccordionProps {
   labelIcon?: string
   extraIcon?: string
   bordered?: boolean
+  showLabelIcon?: boolean
 }
 
 const props = withDefaults(defineProps<AccordionProps>(), {
@@ -24,7 +25,8 @@ const props = withDefaults(defineProps<AccordionProps>(), {
   contentClassName: '',
   label: 'Accordion',
   labelIcon: iconName.ANGLE_DOWN,
-  bordered: true
+  bordered: true,
+  showLabelIcon: true
 })
 
 const emits = defineEmits(['onCollapse'])
@@ -56,7 +58,7 @@ watch(collapsed, (newValue) => emits('onCollapse', newValue))
   <div :style="rootStyle" :class="['accordion', borderedClassName, collapsedClassName, rootClassName]">
     <div :style="labelStyle" :class="['accordion-label', labelClassName]" @click="handleCollapse">
       <div class="label-title">
-        <Icon v-if="!hasExtraLabel" :iconName="labelIcon" rootClassName="title-icon" />
+        <Icon v-if="!hasExtraLabel && showLabelIcon" :iconName="labelIcon" rootClassName="title-icon" />
         <div v-if="hasExtraLabel">
           <slot name="extraLabel"></slot>
         </div>

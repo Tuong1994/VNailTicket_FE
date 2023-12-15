@@ -8,14 +8,12 @@ import HomeFooter from './HomeFooter.vue'
 
 <template>
   <div class="home">
-    <div class="home-content">
-      <HomeBanner />
-      <HomeQnA />
-      <div class="content-section-divide" />
-      <HomePartners />
-      <div class="content-section-divide" />
-      <HomeImages />
-      <HomeFooter />
-    </div>
+    <HomeBanner />
+    <HomeQnA />
+    <div class="home-section-divide" />
+    <HomePartners />
+    <div class="home-section-divide" />
+    <HomeImages />
+    <HomeFooter />
   </div>
 </template>

@@ -25,6 +25,7 @@ export const iconName = {
   MINUS: 'minus',
   BOX_ARCHIVE: 'box-archive',
   LIST: 'list',
+  PEN_ALT: 'pen-alt',
   CIRCLE_CHECK: 'circle-check',
   X_MARK_CIRCLE: 'xmark-circle',
   CIRCLE_INFO: 'circle-info',

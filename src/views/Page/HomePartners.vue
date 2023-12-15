@@ -24,10 +24,10 @@ const items = computed(() => [
     </Paragraph>
 
     <Row v-for="item in items" :key="item.id" justify="between" aligns="middle">
-      <Col :lg="6">
+      <Col :lg="6" :span="6">
         <Image :sizes="180" :src="item.path" />
       </Col>
-      <Col :lg="16">
+      <Col :lg="16" :span="16">
         <Paragraph :size="20"> {{ item.title }} </Paragraph>
       </Col>
     </Row>

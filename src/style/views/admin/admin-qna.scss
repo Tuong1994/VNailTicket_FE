@@ -1,0 +1,36 @@
+.admin-qna {
+  .qna-item {
+    margin-bottom: $m-1;
+    border: 1px solid transparent;
+    transition: all $transition-time-sm $transition-fn;
+    &:last-child {
+      margin: 0;
+    }
+    &:hover {
+      border-color: $bg-blue;
+    }
+    * {
+      color: $text-gray;
+    }
+    .item-content {
+      .content-action {
+        border: unset;
+        background: transparent;
+        cursor: pointer;
+        transition: opacity $transition-time-sm $transition-fn;
+        &:hover {
+          opacity: 0.6;
+        }
+        path {
+          color: $text-red;
+        }
+      }
+    }
+  }
+  .qna-item-active {
+    border-color: $bg-blue;
+  }
+  .qna-action {
+    width: $w-full;
+  }
+}
