@@ -1,5 +1,5 @@
-.admin-qna {
-  .qna-item {
+.admin-qna-list {
+  .list-qna {
     margin-bottom: $m-1;
     border: 1px solid transparent;
     transition: all $transition-time-sm $transition-fn;
@@ -12,8 +12,8 @@
     * {
       color: $text-gray;
     }
-    .item-content {
-      .content-action {
+    .qna-content {
+      .content-icon {
         border: unset;
         background: transparent;
         cursor: pointer;
@@ -27,10 +27,10 @@
       }
     }
   }
-  .qna-item-active {
+  .list-qna-active {
     border-color: $bg-blue;
-  }
-  .qna-action {
-    width: $w-full;
+    * {
+      color: $text-black;
+    }
   }
 }

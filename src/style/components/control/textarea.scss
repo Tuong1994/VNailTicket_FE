@@ -16,6 +16,9 @@
         width: $w-full;
         border: unset;
         background: transparent;
+        &::placeholder {
+          color: $text-light-gray;
+        }
       }
       .control-action {
         cursor: pointer;

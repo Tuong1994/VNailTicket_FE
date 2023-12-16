@@ -16,13 +16,14 @@ const handleRemove = (item: UploadItem) => emits('onRemove', item)
 
 <template>
   <div class="upload-view-area">
-    <Divider>{{ title }}</Divider>
-    
+    <Divider rootClassName="area-divider">{{ title }}</Divider>
+
     <div class="area-images">
       <Image
         v-for="item in items"
         :key="item.id"
         :src="item.url"
+        sizes="sm"
         objectFit="cover"
         hasView
         hasRemove

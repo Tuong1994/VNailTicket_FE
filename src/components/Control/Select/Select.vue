@@ -26,6 +26,7 @@ export interface SelectProps {
   async?: boolean
   loading?: boolean
   disabled?: boolean
+  hasClear?: boolean
   total?: number
   limit?: number
   rule?: FormRule
@@ -43,6 +44,7 @@ const props = withDefaults(defineProps<SelectProps>(), {
   async: false,
   loading: false,
   disabled: false,
+  hasClear: true,
   total: 100,
   limit: 10,
   options: () => []
@@ -92,8 +94,8 @@ const hasAddonBefore = computed<boolean>(() => slots.addonBefore !== undefined)
 
 const hasAddonAfter = computed<boolean>(() => slots.addonAfter !== undefined)
 
-const showClearIcon = computed<boolean>(() =>
-  Boolean((search.value || selectedOption.value) && !props.disabled)
+const showClearIcon = computed<boolean>(
+  () => props.hasClear && Boolean((search.value || selectedOption.value) && !props.disabled)
 )
 
 const totalPages = computed<number>(() => Math.ceil(props.total / props.limit))

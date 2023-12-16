@@ -3,7 +3,7 @@ import { ref, computed, toRefs, type StyleValue } from 'vue'
 import { iconName } from '@/components/UI/Icon/constant.ts'
 import Icon from '@/components/UI/Icon/Icon.vue'
 import Draggable from '@/components/UI/Draggable/Draggable.vue'
-import useRender from '@/hooks/useRender.ts'
+import { useRender, useOverflow } from '@/hooks'
 
 interface ImageViewerProps {
   open: boolean
@@ -15,6 +15,8 @@ const props = defineProps<ImageViewerProps>()
 const emits = defineEmits(['onClose'])
 
 const { open } = toRefs(props)
+
+useOverflow(open)
 
 const render = useRender(open)
 

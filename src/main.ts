@@ -32,7 +32,7 @@ import {
   faUpload,
   faCaretRight,
   faArrowsLeftRightToLine,
-  faPenAlt,
+  faPenAlt
 } from '@fortawesome/free-solid-svg-icons'
 import App from './App.vue'
 import router from './router'
@@ -68,7 +68,7 @@ library.add(
   faUpload,
   faCaretRight,
   faArrowsLeftRightToLine,
-  faPenAlt,
+  faPenAlt
 )
 
 const app = createApp(App)
@@ -80,4 +80,3 @@ app.use(router)
 app.component('fa', FontAwesomeIcon)
 
 app.mount('#app')
-

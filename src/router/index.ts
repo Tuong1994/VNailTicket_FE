@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import HomeView from '@/views/Page/HomeView.vue'
 import AdminView from '@/views/Admin/AdminView.vue'
-import AdminQnAView from '@/views/Admin/AdminQnA/AdminQnAView.vue'
+import AdminQnAList from '@/views/Admin/AdminQnA/AdminQnAList.vue'
+import AdminQnAForm from '@/views/Admin/AdminQnA/AdminQnAForm.vue'
+import AdminContactList from '@/views/Admin/AdminContact/AdminContactList.vue'
+import AdminGalleryList from '@/views/Admin/AdminGallery/AdminGalleryList.vue'
 
 const BASE_URL = 'http://localhost:5173/'
 
@@ -16,8 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'admin',
     component: AdminView,
     children: [
-      { path: '', name: 'default', component: AdminQnAView },
-      { path: '/qna/list', name: 'qnaList', component: AdminQnAView }
+      { path: '', name: 'default', component: AdminQnAList },
+      { path: 'qna/list', name: 'qnaList', component: AdminQnAList },
+      { path: 'qna/form/:id', name: 'qnaForm', component: AdminQnAForm },
+      { path: 'contact/list', name: 'contactList', component: AdminContactList },
+      { path: 'gallery/list', name: 'galleryList', component: AdminGalleryList }
     ]
   }
 ]

@@ -26,7 +26,7 @@ const form = useFormStore()
 
 const buttonSize = computed<ComponentSize>(() => (form.isVee ? form.formSize : props.sizes))
 
-const buttonColor = computed<ComponentColor>(() => (form.isVee ? form.formColor : props.color))
+const buttonColor = computed<ComponentColor>(() => props.color)
 
 const buttonDisabled = computed<boolean>(() => props.disabled || props.loading)
 

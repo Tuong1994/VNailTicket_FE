@@ -1,0 +1,144 @@
+.text-editor {
+  .text-editor-label {
+    margin-bottom: $m-1 - 0.5;
+  }
+  .text-editor-control {
+    border: 1px solid $bg-gray;
+    border-radius: $rounded;
+    transition: all $transition-time-md $transition-fn;
+    * {
+      border: 0;
+    }
+    .ql-toolbar {
+      border-bottom: 1px solid $bg-gray;
+    }
+    .ql-editor {
+      height: $h-10 * 3;
+      overflow-y: auto;
+    }
+  }
+}
+
+// Gap
+.text-editor-gap-sm {
+  margin-bottom: $m-1;
+}
+
+.text-editor-gap-md {
+  margin-bottom: $m-1 + 0.5;
+}
+
+.text-editor-gap-lg {
+  margin-bottom: $m-2;
+}
+
+// Disabled
+.text-editor-disabled {
+  .text-editor-label {
+    color: $text-gray;
+    * {
+      color: $text-gray;
+    }
+  }
+  .text-editor-control {
+    background: $bg-slate;
+    color: $text-gray;
+    cursor: not-allowed;
+    &:hover {
+      border-color: $bg-gray !important;
+    }
+  }
+}
+
+// Error
+.text-editor-error {
+  .text-editor-label {
+    color: $text-red;
+    * {
+      color: $text-red;
+    }
+  }
+  .text-editor-control {
+    border-color: $bg-red !important;
+  }
+}
+
+// Shape
+.text-editor-square {
+  .text-editor-control {
+    border-radius: $rounded;
+  }
+}
+
+.text-editor-round {
+  .text-editor-control {
+    border-radius: $rounded-xxl;
+  }
+}
+
+// Color
+.text-editor-blue {
+  .text-editor-control {
+    &:hover {
+      border-color: $bg-blue;
+    }
+    &:focus-within {
+      border-color: $bg-blue;
+    }
+  }
+}
+
+.text-editor-green {
+  .text-editor-control {
+    &:hover {
+      border-color: $bg-green;
+    }
+    &:focus-within {
+      border-color: $bg-green;
+    }
+  }
+}
+
+.text-editor-orange {
+  .text-editor-control {
+    &:hover {
+      border-color: $bg-orange;
+    }
+    &:focus-within {
+      border-color: $bg-orange;
+    }
+  }
+}
+
+.text-editor-yellow {
+  .text-editor-control {
+    &:hover {
+      border-color: $bg-yellow;
+    }
+    &:focus-within {
+      border-color: $bg-yellow;
+    }
+  }
+}
+
+.text-editor-purple {
+  .text-editor-control {
+    &:hover {
+      border-color: $bg-purple;
+    }
+    &:focus-within {
+      border-color: $bg-purple;
+    }
+  }
+}
+
+.text-editor-pink {
+  .text-editor-control {
+    &:hover {
+      border-color: $bg-pink;
+    }
+    &:focus-within {
+      border-color: $bg-pink;
+    }
+  }
+}

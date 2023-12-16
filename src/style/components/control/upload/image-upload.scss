@@ -119,6 +119,9 @@
   }
   .upload-view-area {
     width: $w-full;
+    .area-divider {
+      margin: $m-3 0;
+    }
     .area-images {
       display: flex;
       flex-wrap: wrap;

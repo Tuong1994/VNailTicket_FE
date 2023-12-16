@@ -1,4 +1,16 @@
 .home-images {
+  .images-list {
+    margin-top: $m-2;
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+    .list-view {
+      img {
+        border: 1px solid $bg-blue;
+        border-radius: $rounded;
+      }
+    }
+  }
   .images-action {
     margin-top: $m-2;
     border: unset;

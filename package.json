@@ -12,12 +12,14 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-alignment": "^40.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-regular-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@vue/runtime-core": "^3.3.11",
+    "@vueup/vue-quill": "^1.2.0",
     "moment": "^2.29.4",
     "pinia": "^2.1.7",
     "sass": "^1.69.5",

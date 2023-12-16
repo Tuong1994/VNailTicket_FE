@@ -55,7 +55,7 @@ const handleCollapse = (id: string) => {
 </script>
 
 <template>
-  <div class="admin-qna">
+  <div class="admin-qna-list">
     <Accordion
       v-for="(item, idx) in items"
       :key="item.id"
@@ -63,22 +63,26 @@ const handleCollapse = (id: string) => {
       :contentId="`qnaContent-${idx}`"
       :bordered="false"
       :showLabelIcon="false"
-      :rootClassName="`qna-item ${activeIds.includes(item.id) ? 'qna-item-active' : ''}`"
-      contentClassName="item-content"
+      :rootClassName="`list-qna ${activeIds.includes(item.id) ? 'list-qna-active' : ''}`"
+      contentClassName="qna-content"
       @onCollapse="() => handleCollapse(item.id)"
     >
       {{ item.content }}
 
       <Space justify="right" aligns="center" size="md">
-        <router-link to="/admin" class="content-action">
+        <router-link :to="`/admin/qna/form/${item.id}`" class="content-icon">
           <Icon :iconName="iconName.PEN_ALT" />
         </router-link>
-        <button class="content-action">
+        <button class="content-icon">
           <Icon :iconName="iconName.TRASH" />
         </button>
       </Space>
     </Accordion>
 
-    <Button color="red" rootClassName="qna-action">New Q&A</Button>
+    <div class="content-footer">
+      <router-link to="/admin/qna/form/0">
+        <Button color="red" rootClassName="content-action">New Q&A</Button>
+      </router-link>
+    </div>
   </div>
 </template>
