@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { UI } from '@/components'
+
+const { ToastMessage } = UI
+</script>
 
 <template>
   <div class="app">
@@ -6,4 +10,6 @@
       <router-view />
     </div>
   </div>
+
+  <ToastMessage />
 </template>

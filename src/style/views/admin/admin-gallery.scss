@@ -1,8 +1,18 @@
 .admin-gallery-list {
+  padding-bottom: $p-5;
   .list-inner {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    display: column;
+    columns: 2;
+    .inner-image {
+      display: inline-block;
+      .image-root {
+        width: unset;
+        img {
+          border: 1px solid $bg-blue;
+          border-radius: $rounded;
+        }
+      }
+    }
   }
 }
 

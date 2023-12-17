@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { UI } from '@/components'
+import { Image } from '@/services/image/type.ts'
+import { imageApis } from '@/services/image/api.ts'
+import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
 
 const { Section, Image, Typography } = UI
 
 const { Title, Paragraph } = Typography
 
-const images = computed(() => [
-  { id: '1', path: '/images/page/Gallery_1.PNG' },
-  { id: '2', path: '/images/page/Gallery_2.PNG' },
-  { id: '3', path: '/images/page/Gallery_3.PNG' },
-  { id: '4', path: '/images/page/Gallery_4.PNG' }
-])
+const images = ref<Image[]>([])
+
+const getImages = async () => {
+  const res = await imageApis.getList()
+  if (res.error) return messageApi.error('Api network error')
+  images.value = res.success
+}
+
+onMounted(() => getImages())
 </script>
 
 <template>
@@ -22,7 +28,9 @@ const images = computed(() => [
     </Paragraph>
 
     <div class="images-list">
-      <Image v-for="image in images" :key="image.id" :src="image.path" rootClassName="list-view" />
+      <div v-for="image in images" :key="image.id" class="list-inner">
+        <Image :src="image.path" sizes="100%" rootClassName="inner-image" />
+      </div>
     </div>
 
     <button type="button" class="images-action">See more</button>

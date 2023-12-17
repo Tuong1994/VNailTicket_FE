@@ -1,15 +1,5 @@
 <script setup lang="ts">
-import {
-  ref,
-  computed,
-  withDefaults,
-  useSlots,
-  toRef,
-  watchEffect,
-  watch,
-  inject,
-  type StyleValue
-} from 'vue'
+import { ref, computed, withDefaults, useSlots, toRef, watchEffect, inject, type StyleValue } from 'vue'
 import { useField } from 'vee-validate'
 import type { ComponentSize } from '@/common/type.ts'
 import type { FormRule, ControlColor, ControlShape } from '@/components/Control/type.ts'
@@ -63,7 +53,7 @@ const slots = useSlots()
 
 const emits = defineEmits(['onChange'])
 
-const editorContent = ref<string>('')
+const editorContent = ref<string>(form?.isVee ? veeValue.value : props.defaultValue)
 
 const controlValue = computed<string>(() => (form?.isVee ? veeValue?.value : props.modelValue))
 
@@ -92,15 +82,12 @@ const toolbarOptions = computed(() => [
   ['clean']
 ])
 
-// watchEffect(() => {
-//   if (form?.isVee) return (editorContent.value = veeValue)
-//   editorContent.value = props.defaultValue
-// })
-
-watch(editorContent, (newContent) => {
-  if (form?.isVee) return setValue(newContent)
-  emits('onChange', newContent)
-})
+const handleChange = (e) => {
+  console.log(e)
+  e.container.querySelector('.ql-blank').innerHTML = editorContent.value
+  // emits('onChange', content)
+  // if (form?.isVee) return setValue(JSON.stringify(content))
+}
 </script>
 
 <template>

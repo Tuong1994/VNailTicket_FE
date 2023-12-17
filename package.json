@@ -20,6 +20,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@vue/runtime-core": "^3.3.11",
     "@vueup/vue-quill": "^1.2.0",
+    "axios": "^1.6.2",
     "moment": "^2.29.4",
     "pinia": "^2.1.7",
     "sass": "^1.69.5",

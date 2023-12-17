@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { UI, Control } from '@/components'
 import { useRouter } from 'vue-router'
-
-interface FormData {
-  title: string
-  content: string
-}
+import { QnA } from '@/services/qna/type.ts'
+import { qnaApis } from '@/services/qna/api.ts'
+import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
 
 const { Space, Grid, Button } = UI
 
@@ -14,18 +12,33 @@ const { Row, Col } = Grid
 
 const { Form, Input, TextEditor } = Control
 
+const messageApi = useMessage()
+
 const router = useRouter()
 
 const params = computed(() => router.currentRoute.value.params)
 
-const initialValues = ref<FormData>({
+const initialValues = ref<QnA>({
   title: '',
   content: ''
 })
+
+const getQnA = async () => {
+  if (!params.value.id || params.value.id === '0') return
+  const res = await qnaApis.getDetail({ qnaItemId: params.value.id })
+  if (res.error) return messageApi.error('Api network error')
+  initialValues.value = res.success
+}
+
+onMounted(() => getQnA())
+
+const handleSubmit = (formData: QnA) => {
+  console.log(formData)
+}
 </script>
 
 <template>
-  <Form :initialValues="initialValues">
+  <Form :initialValues="initialValues" @onFinish="handleSubmit">
     <Input name="title" placeholder="Title" />
 
     <TextEditor name="content" />
@@ -38,7 +51,7 @@ const initialValues = ref<FormData>({
           </router-link>
         </Col>
         <Col :lg="18" :span="18">
-          <Button rootClassName="content-action" color="red">
+          <Button type="submit" rootClassName="content-action" color="red">
             {{ params.id === '0' ? 'Complete' : 'Save' }}
           </Button>
         </Col>

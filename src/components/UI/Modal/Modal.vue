@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<ModalProps>(), {
   sizes: 'md',
   okButtonTitle: 'Ok',
   cancelButtonTitle: 'Cancel',
-  okButtonProps: () => ({ color: 'blue' }),
+  okButtonProps: () => ({}),
   cancelButtonProps: () => ({})
 })
 
@@ -55,6 +55,8 @@ const hasHeadClassName = computed<boolean>(() => (hasHead.value ? 'modal-head-fl
 const backdropActiveClassName = computed<boolean>(() => (props.open ? 'modal-backdrop-active' : ''))
 
 const modalActiveClassName = computed<boolean>(() => (props.open ? 'modal-active' : ''))
+
+const okActionProps = computed<ButtonProps>(() => ({ ...props.okButtonProps, color: 'blue' }))
 
 const handleOk = () => emits('onOk')
 
@@ -79,20 +81,10 @@ const handleClose = () => emits('onClose')
       </div>
 
       <div :class="['modal-foot', footClassName]">
-        <Button
-          :color="cancelButtonProps.color"
-          :sizes="cancelButtonProps.sizes"
-          :ghost="cancelButtonProps.ghost"
-          @click="handleClose"
-        >
+        <Button v-bind="cancelButtonProps" @click="handleClose">
           {{ cancelButtonTitle }}
         </Button>
-        <Button
-          :color="okButtonProps.color"
-          :sizes="okButtonProps.sizes"
-          :ghost="okButtonProps.ghost"
-          @click="handleOk"
-        >
+        <Button v-bind="okActionProps" @click="handleOk">
           {{ okButtonTitle }}
         </Button>
       </div>
