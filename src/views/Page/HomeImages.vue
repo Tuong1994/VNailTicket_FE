@@ -1,23 +1,15 @@
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref } from 'vue'
 import { UI } from '@/components'
 import { Image } from '@/services/image/type.ts'
-import { imageApis } from '@/services/image/api.ts'
+import useImageStore from '@/store/image/ImageStore.ts'
 import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
 
 const { Section, Image, Typography } = UI
 
 const { Title, Paragraph } = Typography
 
-const images = ref<Image[]>([])
-
-const getImages = async () => {
-  const res = await imageApis.getList()
-  if (res.error) return messageApi.error('Api network error')
-  images.value = res.success
-}
-
-onMounted(() => getImages())
+const imageStore = useImageStore()
 </script>
 
 <template>
@@ -28,7 +20,7 @@ onMounted(() => getImages())
     </Paragraph>
 
     <div class="images-list">
-      <div v-for="image in images" :key="image.id" class="list-inner">
+      <div v-for="image in imageStore.images" :key="image.id" class="list-inner">
         <Image :src="image.path" sizes="100%" rootClassName="inner-image" />
       </div>
     </div>
@@ -36,3 +28,4 @@ onMounted(() => getImages())
     <button type="button" class="images-action">See more</button>
   </Section>
 </template>
+@/store/image/ImageStore

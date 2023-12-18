@@ -27,7 +27,7 @@ export const imageApis = {
     return res
   },
 
-  async removeImage(query: Query) {
+  async removeImages(query: Query) {
     const res: Response<any> = utils.defaultResponse<any>()
     try {
       const fetch = await AxiosClient.delete<ResponseSuccess<any>>(

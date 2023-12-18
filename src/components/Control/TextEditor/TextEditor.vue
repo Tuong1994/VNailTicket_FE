@@ -1,5 +1,15 @@
 <script setup lang="ts">
-import { ref, computed, withDefaults, useSlots, toRef, watchEffect, inject, type StyleValue } from 'vue'
+import {
+  ref,
+  computed,
+  withDefaults,
+  useSlots,
+  toRef,
+  watchEffect,
+  onMounted,
+  inject,
+  type StyleValue
+} from 'vue'
 import { useField } from 'vee-validate'
 import type { ComponentSize } from '@/common/type.ts'
 import type { FormRule, ControlColor, ControlShape } from '@/components/Control/type.ts'
@@ -8,6 +18,9 @@ import { QuillEditor } from '@vueup/vue-quill'
 import Icon from '@/components/UI/Icon/Icon.vue'
 import NoteMessage from '@/components/UI/NoteMessage/NoteMessage.vue'
 import useFormStore from '@/components/Control/Form/FormStore.ts'
+import Quill from 'quill'
+import utils from '@/utils'
+import 'quill/dist/quill.snow.css'
 import '@vueup/vue-quill/dist/vue-quill.snow.css'
 
 export interface TextEditorProps {
@@ -53,7 +66,7 @@ const slots = useSlots()
 
 const emits = defineEmits(['onChange'])
 
-const editorContent = ref<string>(form?.isVee ? veeValue.value : props.defaultValue)
+const editorContent = ref<string>('')
 
 const controlValue = computed<string>(() => (form?.isVee ? veeValue?.value : props.modelValue))
 
@@ -75,6 +88,16 @@ const errorClassName = computed<string>(() => (errorMessage?.value ? 'text-edito
 
 const disabledClassName = computed<string>(() => (props.disabled ? 'text-editor-disabled' : ''))
 
+const quillModelValue = computed({
+  get: () => editorContent.value,
+  set: (value) => {
+    const convertContent = JSON.stringify(value)
+    editorContent.value = convertContent
+    if (form?.isVee) return setValue(convertContent)
+    emits('onChange', convertContent)
+  }
+})
+
 const toolbarOptions = computed(() => [
   [{ size: ['small', false, 'large', 'huge'] }],
   ['bold', 'italic', 'underline'],
@@ -82,12 +105,10 @@ const toolbarOptions = computed(() => [
   ['clean']
 ])
 
-const handleChange = (e) => {
-  console.log(e)
-  e.container.querySelector('.ql-blank').innerHTML = editorContent.value
-  // emits('onChange', content)
-  // if (form?.isVee) return setValue(JSON.stringify(content))
-}
+watchEffect(() => {
+  const defaultContent = form?.isVee ? veeValue.value : props.defaultValue
+  if (defaultContent) editorContent.value = utils.formatQuill(defaultContent)
+})
 </script>
 
 <template>
@@ -109,7 +130,7 @@ const handleChange = (e) => {
       </div>
 
       <div :style="inputStyle" :class="['text-editor-control', inputClassName]">
-        <QuillEditor :toolbar="toolbarOptions" v-model:content="editorContent" />
+        <QuillEditor :toolbar="toolbarOptions" v-model:content="quillModelValue" contentType="html" />
       </div>
     </label>
 

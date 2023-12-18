@@ -1,4 +1,5 @@
 export type Query = {
+  ids?: string
   qnaItemId?: string
   accountId?: string
   imageId?: string

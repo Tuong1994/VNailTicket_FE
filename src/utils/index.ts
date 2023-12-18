@@ -1,4 +1,6 @@
 import type { Query, Response, ResponseError, ResponseSuccess } from '@/services/type'
+import Quill from 'quill'
+import 'quill/dist/quill.snow.css'
 
 const utils = {
   uuid: () => {
@@ -32,12 +34,32 @@ const utils = {
 
   getQuery: (query: Query) => {
     if (Object.keys(query).length === 0) return
-    const { qnaItemId, imageId, accountId } = query
+    const { qnaItemId, imageId, accountId, ids } = query
     let rs = '?'
+    ids && (rs += `&ids=${ids}`)
     imageId && (rs += `&imageId=${imageId}`)
     qnaItemId && (rs += `&qnaItemId=${qnaItemId}`)
     accountId && (rs += `&accountId=${accountId}`)
     return rs
+  },
+
+  formatQuill: (data: any) => {
+    let content
+    try {
+      if (!data) return
+      const parseData = JSON.parse(data ?? '')
+
+      if (parseData && parseData.ops) {
+        const quill = new Quill(document.createElement('div'))
+        quill.setContents(parseData.ops)
+        content = quill.root.innerHTML
+      } else {
+        content = parseData
+      }
+    } catch (error) {
+      content = data
+    }
+    return content
   }
 }
 

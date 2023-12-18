@@ -17,6 +17,7 @@ export interface ImageProps {
   src?: string
   hasView?: boolean
   hasRemove?: boolean
+  hasCheck?: boolean
 }
 
 const props = withDefaults(defineProps<ImageProps>(), {
@@ -25,10 +26,11 @@ const props = withDefaults(defineProps<ImageProps>(), {
   objectFit: 'fill',
   src: 'https://cdn.hswstatic.com/gif/space-smell-2.jpg',
   hasView: false,
-  hasRemove: false
+  hasRemove: false,
+  hasCheck: false,
 })
 
-const emits = defineEmits(['onClick', 'onRemove'])
+const emits = defineEmits(['onClick', 'onRemove', 'onCheck'])
 
 const { src } = toRefs(props)
 
@@ -53,6 +55,8 @@ const handleLoad = () => (loading.value = false)
 const handleRemove = () => emits('onRemove')
 
 const handleClick = () => emits('onClick')
+
+const handleCheck = (checked: boolean) => emits('onCheck', checked)
 </script>
 
 <template>
@@ -63,9 +67,11 @@ const handleClick = () => emits('onClick')
       :imageSize="imageSize"
       :hasView="hasView"
       :hasRemove="hasRemove"
+      :hasCheck="hasCheck"
       :src="src"
       @onLoad="handleLoad"
       @onRemove="handleRemove"
+      @onCheck="handleCheck"
     />
   </div>
 </template>

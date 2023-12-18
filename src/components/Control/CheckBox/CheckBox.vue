@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, withDefaults, useSlots, watchEffect, toRefs, type StyleValue } from 'vue'
+import { ref, computed, withDefaults, useSlots, watchEffect, toRefs, inject, type StyleValue } from 'vue'
 import { useField } from 'vee-validate'
 import type { FormRule } from '@/components/Control/type.ts'
 import type { ComponentSize, ComponentColor } from '@/common/type.ts'
@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<CheckBoxProps>(), {
   checked: false
 })
 
-const form = useFormStore()
+const form = inject('form')
 
 const { name } = toRefs(props)
 
@@ -56,11 +56,11 @@ const isCheck = ref<boolean>(false)
 
 const hasLabel = computed<boolean>(() => slots.default !== undefined)
 
-const controlValue = computed<string>(() => (form.isVee ? veeValue?.value : props.value))
+const controlValue = computed<string>(() => (form?.isVee ? veeValue?.value : props.value))
 
-const controlColor = computed<ComponentColor>(() => (form.isVee ? form.formColor : props.color))
+const controlColor = computed<ComponentColor>(() => (form?.isVee ? form?.formColor : props.color))
 
-const controlSize = computed<ComponentSize>(() => (form.isVee ? form.formSize : props.sizes))
+const controlSize = computed<ComponentSize>(() => (form?.isVee ? form?.formSize : props.sizes))
 
 const sizeClassName = computed<string>(() => `checkbox-${controlSize.value}`)
 
@@ -68,7 +68,7 @@ const colorClassName = computed<string>(() =>
   isCheck.value ? `checkbox-checked-${controlColor.value}` : `checkbox-${controlColor.value}`
 )
 
-const gapClassName = computed<string>(() => (form.isVee ? `checkbox-gap-${controlSize.value}` : ''))
+const gapClassName = computed<string>(() => (form?.isVee ? `checkbox-gap-${controlSize.value}` : ''))
 
 const errorClassName = computed<string>(() => (errorMessage?.value ? 'checkbox-group-error' : ''))
 
@@ -85,7 +85,7 @@ const handleChange = (e: Event) => {
   const value = (e.target as HTMLInputElement).value
   isCheck.value = checked
 
-  if (form.isVee) {
+  if (form?.isVee) {
     if (!props.value) return setValue(checked)
     else return veeOnChange(veeValue.value)
   }
@@ -98,9 +98,9 @@ const handleChange = (e: Event) => {
 const handleBlur = (e: Event) => emits('onBlur', e)
 
 watchEffect(() => {
-  if (!form.isVee) return (isCheck.value = props.checked)
+  if (!form?.isVee) return (isCheck.value = props.checked)
 
-  const defaultValue = form.formData[name.value]
+  const defaultValue = form?.formData[name.value]
   if (!defaultValue) return
 
   const isBoolean = typeof defaultValue === 'boolean'

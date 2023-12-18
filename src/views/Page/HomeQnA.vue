@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref } from 'vue'
 import { UI } from '@/components'
 import { QnA } from '@/services/qna/type.ts'
 import { qnaApis } from '@/services/qna/api.ts'
 import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
+import useQnAStore from '@/store/qna/QnAStore.ts'
+import utils from '@/utils'
 
 const { Section, Typography, Accordion } = UI
 
@@ -11,9 +13,9 @@ const { Title, Paragraph } = Typography
 
 const messageApi = useMessage()
 
-const activeIds = ref<string[]>([])
+const qnaStore = useQnAStore()
 
-const qnaItems = ref<QnA[]>([])
+const activeIds = ref<string[]>([])
 
 const handleCollapse = (id: string) => {
   const listIds = [...activeIds.value]
@@ -21,14 +23,6 @@ const handleCollapse = (id: string) => {
   if (idx === -1) activeIds.value = [...listIds, id]
   else activeIds.value = [...listIds].filter((i) => i !== id)
 }
-
-const getQnAItems = async () => {
-  const res = await qnaApis.getList()
-  if (res.error) return messageApi.error('Api network error')
-  qnaItems.value = res.success
-}
-
-onMounted(() => getQnAItems())
 </script>
 
 <template>
@@ -40,7 +34,7 @@ onMounted(() => getQnAItems())
     </Paragraph>
 
     <Accordion
-      v-for="(item, idx) in qnaItems"
+      v-for="(item, idx) in qnaStore.qnaItems"
       :key="item.id"
       :label="item.title"
       :contentId="`qnaContent-${idx}`"
@@ -50,7 +44,7 @@ onMounted(() => getQnAItems())
       :labelClassName="`item-label ${activeIds.includes(item.id) ? 'item-label-active' : ''}`"
       @onCollapse="() => handleCollapse(item.id)"
     >
-      {{ item.content }}
+      <div v-html="utils.formatQuill(item.content)"></div>
       <template #extraLabel>
         <img v-if="!activeIds.includes(item.id)" src="/images/icons/Arrow 1.png" class="label-icon" />
         <img v-if="activeIds.includes(item.id)" src="/images/icons/Arrow 2.png" class="label-icon" />
@@ -58,3 +52,4 @@ onMounted(() => getQnAItems())
     </Accordion>
   </Section>
 </template>
+@/store/qna/QnAStore

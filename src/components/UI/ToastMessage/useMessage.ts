@@ -1,7 +1,8 @@
 import { watchEffect } from 'vue'
 import useToastStore, { type ToastOptions } from './ToastStore'
+import type { ToastMessageApi } from './type'
 
-const useMessage = (options?: ToastOptions) => {
+const useMessage = (options?: ToastOptions): ToastMessageApi => {
   const toastStore = useToastStore()
 
   watchEffect(() => {

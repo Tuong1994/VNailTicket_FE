@@ -18,7 +18,8 @@
     border-radius: $rounded;
     overflow: hidden;
     user-select: none;
-    &:hover .view-actions {
+    &:hover .view-actions,
+    &:hover .view-check {
       opacity: 1;
     }
     .view-area {
@@ -52,6 +53,20 @@
           opacity: 0.6;
         }
       }
+    }
+    .view-check {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      z-index: 2;
+      opacity: 0;
+      transition: opacity $transition-time-md $transition-fn;
+      .group-checked {
+        background: $bg-white;
+      }
+    }
+    .view-check-checked {
+      opacity: 1;
     }
   }
   .image-view-loaded {

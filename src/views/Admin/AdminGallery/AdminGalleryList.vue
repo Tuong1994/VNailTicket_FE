@@ -3,6 +3,8 @@ import { ref, computed, onMounted } from 'vue'
 import { UI, Control } from '@/components'
 import { Image } from '@/services/image/type.ts'
 import { imageApis } from '@/services/image/api.ts'
+import { getImages } from '@/store/image/actions.ts'
+import useImageStore from '@/store/image/ImageStore.ts'
 import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
 
 const { Button, Modal, Image } = UI
@@ -15,19 +17,15 @@ const { MultipleImageUpload } = ImageUpload
 
 const messageApi = useMessage()
 
+const imageStore = useImageStore()
+
 const open = ref<boolean>(false)
 
 const loading = ref<boolean>(false)
 
 const imagesUpload = ref<File[]>([])
 
-const images = ref<Image[]>([])
-
-const getImages = async () => {
-  const res = await imageApis.getList()
-  if (res.error) return messageApi.error('Api network error')
-  images.value = res.success
-}
+const imageIds = ref<string[]>([])
 
 const handleOpen = () => (open.value = true)
 
@@ -49,35 +47,57 @@ const handleUpload = async () => {
     messageApi.error('Upload error')
   } else {
     messageApi.success('Uploaded success')
-    getImages()
+    getImages(messageApi, imageStore.addImages)
   }
   open.value = false
   loading.value = false
 }
 
-const handleRemoveImage = (id: string) => {
-  console.log(id)
+const handleSelectImage = (id: string) => {
+  const listIds = [...imageIds.value]
+  const idx = listIds.indexOf(id)
+  if (idx === -1) return (imageIds.value = [listIds, id])
+  imageIds.value = listIds.filter((imageId) => imageId !== id)
 }
 
-onMounted(() => getImages())
+const handleRemoveImage = async () => {
+  loading.value = true
+  const ids = imageIds.value.join(',')
+  const res = await imageApis.removeImages({ ids })
+  if (res.error) {
+    messageApi.error('Remove error')
+  } else {
+    messageApi.success('Removed success')
+    getImages(messageApi, imageStore.addImages)
+  }
+  imageIds.value = []
+  loading.value = false
+}
 </script>
 
 <template>
   <div class="admin-gallery-list">
     <div class="list-inner">
-      <div v-for="image in images" :key="image.id" class="inner-image">
+      <div v-for="image in imageStore.images" :key="image.id" class="inner-image">
         <Image
           :src="image.path"
           hasView
-          hasRemove
+          hasCheck
           rootClassName="image-root"
-          @onRemove="() => handleRemoveImage(image.id)"
+          @onCheck="() => handleSelectImage(image.id)"
         />
       </div>
     </div>
 
     <div class="content-footer">
-      <Button color="red" rootClassName="content-action" @click="handleOpen"> Upload Image </Button>
+      <Button
+        color="red"
+        :loading="loading"
+        rootClassName="content-action"
+        @click="() => (imageIds.length === 0 ? handleOpen() : handleRemoveImage())"
+      >
+        {{ imageIds.length === 0 ? 'Upload Image' : 'Remove Selected Image' }}
+      </Button>
     </div>
 
     <Modal
@@ -94,3 +114,4 @@ onMounted(() => getImages())
     </Modal>
   </div>
 </template>
+@/store/image/ImageStore

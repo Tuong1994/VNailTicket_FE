@@ -2,11 +2,13 @@
   background: url('@/assets/images/Footer.jpg');
   background-repeat: no-repeat;
   background-position: center;
+  position: relative;
   * {
     color: $text-white;
   }
   .footer-title {
     color: $text-white !important;
+    margin-bottom: $m-5;
   }
   .footer-items {
     padding: $p-2 0;
@@ -21,5 +23,41 @@
         margin-bottom: $m-1;
       }
     }
+  }
+  .footer-admin {
+    border: unset;
+    background: transparent;
+    position: absolute;
+    top: 4rem;
+    right: 2rem;
+  }
+}
+
+.login-form {
+  border: 1px solid $bg-blue;
+  border-radius: $rounded-lg;
+  overflow: hidden;
+  font-family: 'Trirong Medium', sans-serif;
+  * {
+    font-family: 'Trirong Medium', sans-serif;
+  }
+  .form-head {
+    padding: $p-1 $p-2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, $bg-light-blue, $bg-blue);
+    * {
+      font-family: 'Abril Regular', sans-serif;
+      color: $text-white;
+      margin: 0;
+    }
+    .head-title {
+      flex-grow: 2;
+    }
+  }
+  .form-action {
+    width: $w-10;
+    border-radius: $rounded-xxl;
   }
 }

@@ -16,6 +16,8 @@ export interface ModalProps {
   headStyle?: StyleValue
   bodyStyle?: StyleValue
   footStyle?: StyleValue
+  hasHead?: boolean
+  hasFoot?: boolean
   open?: boolean
   sizes?: ComponentSize
   okButtonTitle?: string
@@ -29,6 +31,8 @@ const props = withDefaults(defineProps<ModalProps>(), {
   headClassName: '',
   bodyClassName: '',
   footClassName: '',
+  hasHead: true,
+  hasFoot: true,
   sizes: 'md',
   okButtonTitle: 'Ok',
   cancelButtonTitle: 'Cancel',
@@ -46,11 +50,11 @@ const slots = useSlots()
 
 useOverflow(open)
 
-const hasHead = computed<boolean>(() => slots.head)
+const hasHeadTitle = computed<boolean>(() => slots.head !== undefined)
 
 const sizesClassName = computed<string>(() => `modal-${props.sizes}`)
 
-const hasHeadClassName = computed<boolean>(() => (hasHead.value ? 'modal-head-flex' : ''))
+const hasHeadClassName = computed<boolean>(() => (hasHeadTitle.value ? 'modal-head-flex' : ''))
 
 const backdropActiveClassName = computed<boolean>(() => (props.open ? 'modal-backdrop-active' : ''))
 
@@ -68,8 +72,8 @@ const handleClose = () => emits('onClose')
     <div v-if="render" :class="['modal-backdrop', backdropActiveClassName]" @click="handleClose" />
 
     <div v-if="render" :class="['modal', sizesClassName, modalActiveClassName, rootClassName]">
-      <div :class="['modal-head', hasHeadClassName, headClassName]">
-        <slot v-if="hasHead" name="head"></slot>
+      <div v-if="hasHead" :class="['modal-head', hasHeadClassName, headClassName]">
+        <slot v-if="hasHeadTitle" name="head"></slot>
 
         <button type="button" class="head-close-action" @click="handleClose">
           <Icon :iconName="iconName.X_MARK" />
@@ -80,7 +84,7 @@ const handleClose = () => emits('onClose')
         <slot name="body"></slot>
       </div>
 
-      <div :class="['modal-foot', footClassName]">
+      <div v-if="hasFoot" :class="['modal-foot', footClassName]">
         <Button v-bind="cancelButtonProps" @click="handleClose">
           {{ cancelButtonTitle }}
         </Button>
