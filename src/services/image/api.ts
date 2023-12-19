@@ -1,14 +1,14 @@
 import utils from '@/utils'
 import type { Query, Response, ResponseSuccess } from '../type'
-import type { Image } from './type'
+import type { ImageResponse } from './type'
 import { AxiosClient } from '../axios'
 import { imageApiPaths } from './paths'
 
 export const imageApis = {
-  async getList() {
-    const res: Response<Image[]> = utils.defaultResponse<Image[]>()
+  async getList(query: Query) {
+    const res: Response<ImageResponse> = utils.defaultResponse<ImageResponse>()
     try {
-      const fetch = await AxiosClient.get<ResponseSuccess<Image[]>>(imageApiPaths.getList)
+      const fetch = await AxiosClient.get<ResponseSuccess<ImageResponse>>(imageApiPaths.getList + utils.getQuery(query))
       res.success = fetch.data
     } catch (error) {
       res.error = utils.getErrorResponse(error)

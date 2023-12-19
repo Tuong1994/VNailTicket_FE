@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<InputProps>(), {
   name: ''
 })
 
-const form = inject('form')
+const form = inject('form', null)
 
 const name = toRef(props, 'name')
 

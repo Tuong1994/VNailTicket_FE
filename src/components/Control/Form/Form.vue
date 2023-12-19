@@ -22,21 +22,23 @@ const emits = defineEmits(['onFinish'])
 
 const form = useFormStore()
 
-provide('form', form)
-
 const initialValues = toRef(props, 'initialValues')
 
 const { handleSubmit } = useForm<M>({ initialValues })
 
 const onSubmit = handleSubmit((data) => emits('onFinish', data))
 
-watchEffect(() => {
-  form.formActive()
-  form.bindData(props.initialValues)
-  form.changeColor(props.color)
-  form.changeSize(props.sizes)
-  form.changeShape(props.shape)
-})
+if (form) {
+  provide('form', form)
+
+  watchEffect(() => {
+    form.formActive()
+    form.bindData(props.initialValues)
+    form.changeColor(props.color)
+    form.changeSize(props.sizes)
+    form.changeShape(props.shape)
+  })
+}
 </script>
 
 <template>

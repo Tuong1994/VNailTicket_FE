@@ -14,6 +14,22 @@
       }
     }
   }
+  .list-action {
+    margin-top: $m-2;
+    border: unset;
+    background: transparent;
+    color: $text-red;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity $transition-time-md $transition-fn;
+    &:hover {
+      opacity: 0.6;
+    }
+    * {
+      color: $text-red;
+    }
+  }
 }
 
 .upload-images-modal {

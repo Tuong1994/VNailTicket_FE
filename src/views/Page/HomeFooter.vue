@@ -50,4 +50,3 @@ const handleCloseModal = () => (open.value = false)
     <LoginModal :open="open" @onClose="handleCloseModal" />
   </div>
 </template>
-@/store/auth/AuthStore

@@ -30,7 +30,7 @@ const getAuth = () => {
 onMounted(() => {
   getAuth()
   getQnAItems(messageApi, addQnaItems)
-  getImages(messageApi, addImages)
+  getImages(5, messageApi, addImages)
 })
 </script>
 
@@ -43,4 +43,3 @@ onMounted(() => {
 
   <ToastMessage />
 </template>
-@/store/auth/AuthStore@/store/qna/QnAStore@/store/image/ImageStore

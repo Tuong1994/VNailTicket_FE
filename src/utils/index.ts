@@ -34,12 +34,13 @@ const utils = {
 
   getQuery: (query: Query) => {
     if (Object.keys(query).length === 0) return
-    const { qnaItemId, imageId, accountId, ids } = query
+    const { qnaItemId, imageId, accountId, ids, limit } = query
     let rs = '?'
     ids && (rs += `&ids=${ids}`)
     imageId && (rs += `&imageId=${imageId}`)
     qnaItemId && (rs += `&qnaItemId=${qnaItemId}`)
     accountId && (rs += `&accountId=${accountId}`)
+    limit && (rs += `&limit=${limit}`)
     return rs
   },
 

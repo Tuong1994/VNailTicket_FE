@@ -52,4 +52,3 @@ const handleCollapse = (id: string) => {
     </Accordion>
   </Section>
 </template>
-@/store/qna/QnAStore

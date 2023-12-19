@@ -2,11 +2,13 @@
 import { ref, computed, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { UI } from '@/components'
+import type { DropdownItems } from '@/components/UI/Dropdown/type.ts'
+import { iconName } from '@/components/UI/Icon/constant.ts'
 import { authApis } from '@/services/auth/api.ts'
 import useAuthStore from '@/store/auth/AuthStore.ts'
 import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
 
-const { Typography, Loading } = UI
+const { Typography, Loading, Dropdown, Icon } = UI
 
 const { Spinner } = Loading
 
@@ -28,6 +30,8 @@ const loading = ref<boolean>(false)
 
 const params = computed(() => router.currentRoute.value.params)
 
+const items = computed<DropdownItems>(() => [{ id: '1', comName: 'logout' }])
+
 const handleLogout = async () => {
   if (!auth) return
   loading.value = true
@@ -42,17 +46,36 @@ const handleLogout = async () => {
   loading.value = false
   router.push('/')
 }
+
+const handleExist = () => router.push('/')
 </script>
 
 <template>
   <div class="admin-header">
     <div v-if="!props.isAdminForm" class="header-default">
-      <Title rootClassName="default-name">Admin</Title>
+      <Dropdown :items="items" rootClassName="default-dropdown">
+        <template #label>
+          <Title rootClassName="dropdown-name">
+            {{ auth.info.account }}
+          </Title>
+        </template>
+        <template #item="com">
+          <button
+            v-if="com.item === 'logout'"
+            :disabled="loading"
+            class="dropdown-item"
+            @click="handleLogout"
+          >
+            <Spinner v-if="loading" />
+            <Icon v-if="!loading" :iconName="iconName.SIGN_OUT" />
+            <span>{{ !loading ? 'Logout' : 'Logouting' }}</span>
+          </button>
+        </template>
+      </Dropdown>
 
-      <button class="default-icon" @click="handleLogout">
-        <span>{{ !loading ? 'Exit' : 'Existing' }}</span>
-        <img v-if="!loading" src="/images/icons/Exit.png" />
-        <Spinner v-if="loading" />
+      <button class="default-icon" @click="handleExist">
+        <span>Exit</span>
+        <img src="/images/icons/Exit.png" />
       </button>
     </div>
 
@@ -63,4 +86,3 @@ const handleLogout = async () => {
     </div>
   </div>
 </template>
-@/store/auth/AuthStore

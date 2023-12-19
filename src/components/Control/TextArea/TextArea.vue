@@ -39,7 +39,7 @@ const props = withDefaults(defineProps<TextAreaProps>(), {
   rows: 5
 })
 
-const form = inject('form')
+const form = inject('form', null)
 
 const name = toRef(props, 'name')
 

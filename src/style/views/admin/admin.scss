@@ -43,9 +43,23 @@
         font-family: 'Abril Regular', sans-serif;
         color: $text-white;
       }
-      .default-name {
-        margin: 0;
-        font-weight: 400;
+      .default-dropdown {
+        .dropdown-name {
+          margin: 0;
+          font-weight: 400;
+          text-transform: capitalize;
+        }
+        .dropdown-item {
+          border: unset;
+          background: transparent;
+          * {
+            color: $text-black;
+            font-family: 'Trirong Medium', sans-serif;
+          }
+          span {
+            margin-left: $m-1;
+          }
+        }
       }
       .default-icon {
         background: transparent;

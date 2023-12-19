@@ -3,6 +3,7 @@ export type Query = {
   qnaItemId?: string
   accountId?: string
   imageId?: string
+  limit?: number;
 }
 
 export type ResponseSuccess<M = unknown> = {

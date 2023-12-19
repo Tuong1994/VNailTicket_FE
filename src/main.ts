@@ -32,7 +32,8 @@ import {
   faUpload,
   faCaretRight,
   faArrowsLeftRightToLine,
-  faPenAlt
+  faPenAlt,
+  faSignOut
 } from '@fortawesome/free-solid-svg-icons'
 import App from './App.vue'
 import router from './router'
@@ -68,7 +69,8 @@ library.add(
   faUpload,
   faCaretRight,
   faArrowsLeftRightToLine,
-  faPenAlt
+  faPenAlt,
+  faSignOut,
 )
 
 const app = createApp(App)

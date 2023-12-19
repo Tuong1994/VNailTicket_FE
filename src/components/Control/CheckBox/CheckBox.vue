@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<CheckBoxProps>(), {
   checked: false
 })
 
-const form = inject('form')
+const form = inject('form', null)
 
 const { name } = toRefs(props)
 

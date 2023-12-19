@@ -52,7 +52,7 @@ const props = withDefaults(defineProps<SelectProps>(), {
 
 const emits = defineEmits(['onChangeSearch', 'onChangeSelect', 'onChangePage'])
 
-const form = inject('form')
+const form = inject('form', null)
 
 const name = toRef(props, 'name')
 

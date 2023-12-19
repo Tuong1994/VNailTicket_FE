@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, type StyleValue } from 'vue'
+import type { ImageLazyType } from '.'
 import { iconName } from '@/components/UI/Icon/constant.ts'
 import Icon from '@/components/UI/Icon/Icon.vue'
 import CheckBox from '@/components/Control/CheckBox/CheckBox.vue'
@@ -15,6 +16,7 @@ interface ImageViewProps {
   imageSize: StyleValue
   loading: boolean
   src: string
+  lazyType: ImageLazyType
   hasView: boolean
   hasRemove: boolean
   hasCheck: boolean
@@ -48,7 +50,7 @@ const handleCheck = (checked: boolean) => {
 
 <template>
   <div :style="imageSize" :class="['image-view', loadedClassName]">
-    <img v-lazyload class="view-area" :data-src="src" @load="handleLoad" />
+    <img v-lazyload="lazyType" class="view-area" :data-src="src" @load="handleLoad" />
     <div v-if="hasView" class="view-actions">
       <Icon :iconName="iconName.EYE" class="actions-icon" @click="handleOpenViewer" />
       <Icon v-if="hasRemove" :iconName="iconName.TRASH" class="actions-icon" @click="handleRemove" />

@@ -43,7 +43,7 @@ const emits = defineEmits(['onChangeSelect'])
 
 const slots = useSlots()
 
-const form = inject('form')
+const form = inject('form', null)
 
 const { defaultDate, name } = toRefs(props)
 

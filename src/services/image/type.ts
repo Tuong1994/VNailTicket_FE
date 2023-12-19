@@ -6,3 +6,8 @@ export type Image = {
   createdAt?: Date | string
   updatedAt?: Date | string
 }
+
+export type ImageResponse = {
+  totalItems: number
+  data: Image[]
+}

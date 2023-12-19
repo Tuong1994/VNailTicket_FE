@@ -76,4 +76,3 @@ const handleRemoveItem = async (id: string) => {
     </div>
   </div>
 </template>
-@/store/qna/QnAStore

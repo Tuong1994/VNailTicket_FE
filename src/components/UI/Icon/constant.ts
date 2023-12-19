@@ -19,6 +19,7 @@ export const iconName = {
   TRASH: 'trash',
   SEARCH_PLUS: 'search-plus',
   SEARCH_MINUS: 'search-minus',
+  SIGN_OUT: 'sign-out',
   ROTATE: 'rotate',
   CHECK: 'check',
   PLUS: 'plus',

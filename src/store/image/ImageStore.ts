@@ -1,10 +1,10 @@
-import type { Image } from '@/services/image/type'
+import type { ImageResponse } from '@/services/image/type'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 const useImageStore = defineStore('image', () => {
-  const images = ref<Image[]>([])
-  const addImages = (imagesData: Image[]) => (images.value = imagesData)
+  const images = ref<ImageResponse>({ totalItems: 0, data: [] })
+  const addImages = (imagesData: ImageResponse) => (images.value = imagesData)
   return { images, addImages }
 })
 

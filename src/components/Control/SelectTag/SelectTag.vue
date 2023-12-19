@@ -51,7 +51,7 @@ const props = withDefaults(defineProps<SelectTagProps>(), {
 
 const emits = defineEmits(['onChangeSearch', 'onChangeSelect', 'onChangePage'])
 
-const form = inject('form')
+const form = inject('form', null)
 
 const { name, defaultTags } = toRefs(props)
 

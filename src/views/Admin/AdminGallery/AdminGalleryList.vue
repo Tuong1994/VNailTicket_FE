@@ -7,7 +7,9 @@ import { getImages } from '@/store/image/actions.ts'
 import useImageStore from '@/store/image/ImageStore.ts'
 import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
 
-const { Button, Modal, Image } = UI
+const { Button, Modal, Image, Loading } = UI
+
+const { Spinner } = Loading
 
 const { Upload } = Control
 
@@ -23,9 +25,15 @@ const open = ref<boolean>(false)
 
 const loading = ref<boolean>(false)
 
+const limit = ref<number>(5)
+
 const imagesUpload = ref<File[]>([])
 
 const imageIds = ref<string[]>([])
+
+const showAddMore = computed<boolean>(
+  () => imageStore.images.data.length > 0 && imageStore.images.totalItems !== imageStore.images.data.length
+)
 
 const handleOpen = () => (open.value = true)
 
@@ -47,7 +55,7 @@ const handleUpload = async () => {
     messageApi.error('Upload error')
   } else {
     messageApi.success('Uploaded success')
-    getImages(messageApi, imageStore.addImages)
+    getImages(5, messageApi, imageStore.addImages)
   }
   open.value = false
   loading.value = false
@@ -68,9 +76,17 @@ const handleRemoveImage = async () => {
     messageApi.error('Remove error')
   } else {
     messageApi.success('Removed success')
-    getImages(messageApi, imageStore.addImages)
+    getImages(5, messageApi, imageStore.addImages)
   }
   imageIds.value = []
+  loading.value = false
+}
+
+const handleAddMore = async () => {
+  loading.value = true
+  const amounts = limit.value + 5
+  getImages(amounts, messageApi, imageStore.addImages)
+  limit.value = amounts
   loading.value = false
 }
 </script>
@@ -78,16 +94,22 @@ const handleRemoveImage = async () => {
 <template>
   <div class="admin-gallery-list">
     <div class="list-inner">
-      <div v-for="image in imageStore.images" :key="image.id" class="inner-image">
+      <div v-for="image in imageStore.images.data" :key="image.id" class="inner-image">
         <Image
-          :src="image.path"
           hasView
           hasCheck
+          :src="image.path"
+          lazyType="immediate"
           rootClassName="image-root"
           @onCheck="() => handleSelectImage(image.id)"
         />
       </div>
     </div>
+
+    <button v-if="showAddMore" :disabled="loading" type="button" class="list-action" @click="handleAddMore">
+      <Spinner v-if="loading" />
+      <span v-if="!loading">See more</span>
+    </button>
 
     <div class="content-footer">
       <Button
@@ -114,4 +136,3 @@ const handleRemoveImage = async () => {
     </Modal>
   </div>
 </template>
-@/store/image/ImageStore
