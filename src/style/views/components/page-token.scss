@@ -1,0 +1,21 @@
+.modal-refresh {
+  border: 1px solid $bg-blue;
+  border-radius: $rounded-lg;
+  overflow: hidden;
+  font-family: 'Trirong Medium', sans-serif;
+  * {
+    font-family: 'Trirong Medium', sans-serif;
+  }
+  .refresh-head {
+    padding: $p-1 $p-2;
+    color: $text-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, $bg-light-blue, $bg-blue);
+  }
+  .refresh-action {
+    width: $w-10;
+    border-radius: $rounded-xxl;
+  }
+}

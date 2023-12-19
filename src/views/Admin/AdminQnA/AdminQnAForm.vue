@@ -42,8 +42,10 @@ const handleSubmit = async (formData: QnA) => {
   if (!isEdit.value) {
     const res = await qnaApis.create(formData)
     if (res.error) messageApi.error('Create error')
-    else messageApi.success('Created success')
-    router.push(`/admin/qna/form/${res.success.id}`)
+    else {
+      messageApi.success('Created success')
+      router.push(`/admin/qna/form/${res.success.id}`)
+    }
   } else {
     const res = await qnaApis.update({ qnaItemId: params.value.id }, formData)
     if (res.error) messageApi.error('Update error')

@@ -18,6 +18,8 @@ export interface ModalProps {
   footStyle?: StyleValue
   hasHead?: boolean
   hasFoot?: boolean
+  hasCloseIcon?: boolean
+  backDropClose?: boolean
   open?: boolean
   sizes?: ComponentSize
   okButtonTitle?: string
@@ -33,6 +35,8 @@ const props = withDefaults(defineProps<ModalProps>(), {
   footClassName: '',
   hasHead: true,
   hasFoot: true,
+  hasCloseIcon: true,
+  backDropClose: true,
   sizes: 'md',
   okButtonTitle: 'Ok',
   cancelButtonTitle: 'Cancel',
@@ -69,13 +73,17 @@ const handleClose = () => emits('onClose')
 
 <template>
   <Teleport to="#portal">
-    <div v-if="render" :class="['modal-backdrop', backdropActiveClassName]" @click="handleClose" />
+    <div
+      v-if="render"
+      :class="['modal-backdrop', backdropActiveClassName]"
+      @click="() => backDropClose && handleClose()"
+    />
 
     <div v-if="render" :class="['modal', sizesClassName, modalActiveClassName, rootClassName]">
       <div v-if="hasHead" :class="['modal-head', hasHeadClassName, headClassName]">
         <slot v-if="hasHeadTitle" name="head"></slot>
 
-        <button type="button" class="head-close-action" @click="handleClose">
+        <button v-if="hasCloseIcon" type="button" class="head-close-action" @click="handleClose">
           <Icon :iconName="iconName.X_MARK" />
         </button>
       </div>

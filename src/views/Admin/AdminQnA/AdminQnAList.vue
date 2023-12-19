@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { UI } from '@/components'
 import { iconName } from '@/components/UI/Icon/constant.ts'
 import { QnA } from '@/services/qna/type.ts'
@@ -39,6 +39,8 @@ const handleRemoveItem = async (id: string) => {
   getQnAItems(messageApi, qnaStore.addQnaItems)
   loading.value = false
 }
+
+onMounted(() => getQnAItems(messageApi, qnaStore.addQnaItems))
 </script>
 
 <template>

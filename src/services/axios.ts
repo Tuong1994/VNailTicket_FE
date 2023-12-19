@@ -3,6 +3,7 @@ import { AuthConst } from './auth/constant'
 import type { AuthResponse } from './auth/type'
 import { HttpStatus } from './http'
 import { authApiPaths } from './auth/paths'
+import utils from '@/utils'
 
 const { UNAUTHORIZED, FORBIDDEN, NOT_FOUND } = HttpStatus
 
@@ -33,11 +34,14 @@ AxiosClient.interceptors.response.use(
   async (error) => {
     const config = error?.config
     const response = error?.response
+
     if (localStorage.getItem(AuthConst.LOCAL_STORAGE_KEY)) {
       const storage: AuthResponse = JSON.parse(
         localStorage.getItem(AuthConst.LOCAL_STORAGE_KEY) ?? ''
       ) as AuthResponse
+
       if (!storage) return Promise.reject(error)
+
       if (
         (response?.status === UNAUTHORIZED ||
           response?.status === FORBIDDEN ||
@@ -48,12 +52,13 @@ AxiosClient.interceptors.response.use(
         config._retry = true
 
         try {
-          const res = await axios.post(`${BASE_URL}${authApiPaths.refresh}`, { accountId: info.id })
+          const apiPath = BASE_URL + authApiPaths.refresh + utils.getQuery({ accountId: info.id })
+          const res = await axios.post(apiPath)
           const data = res.data
-          const newAuth = {
+          const newAuth: AuthResponse = {
             ...storage,
             accessToken: data.accessToken,
-            expiredIn: data.expiredIn
+            expired: data.expired
           }
           localStorage.setItem(AuthConst.LOCAL_STORAGE_KEY, JSON.stringify(newAuth))
           config.headers['Authorization'] = `Bearer ${data.accessToken}`
@@ -63,6 +68,7 @@ AxiosClient.interceptors.response.use(
         }
       }
     }
+
     return Promise.reject(error)
   }
 )
