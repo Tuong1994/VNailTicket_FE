@@ -41,7 +41,7 @@ const handleSubmit = async (formData: Account) => {
     messageApi.error(res.error.message)
     return (loading.value = false)
   }
-  addAuth(res.success as any)
+  addAuth(res.success)
   messageApi.success('Sign in success')
   loading.value = false
   handleClose()

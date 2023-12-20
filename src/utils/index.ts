@@ -11,9 +11,9 @@ const utils = {
     return `${s4()}-${s4()}-${s4()}/${s4()}-${s4()}-${s4()}`
   },
 
-  defaultResponse: <M>(): Response<M> => {
+  defaultResponse: <M extends object>(): Response<M> => {
     const response: Response<M> = {
-      success: {} as ResponseSuccess<M>,
+      success: {} as M,
       error: null
     }
     return response

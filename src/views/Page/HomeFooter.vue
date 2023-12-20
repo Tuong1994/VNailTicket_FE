@@ -26,8 +26,6 @@ const items = computed(() => [
 const handleOpenModal = () => (open.value = true)
 
 const handleCloseModal = () => (open.value = false)
-
-console.log(authStore.auth)
 </script>
 
 <template>

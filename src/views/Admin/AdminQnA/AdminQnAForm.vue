@@ -32,7 +32,7 @@ const getQnA = async () => {
   if (!isEdit.value) return
   const res = await qnaApis.getDetail({ qnaItemId: String(params.value.id) })
   if (res.error) return messageApi.error('Api network error')
-  initialValues.value = res.success.data
+  initialValues.value = res.success
 }
 
 onMounted(() => getQnA())
@@ -44,7 +44,7 @@ const handleSubmit = async (formData: QnA) => {
     if (res.error) messageApi.error('Create error')
     else {
       messageApi.success('Created success')
-      router.push(`/admin/qna/form/${res.success.data.id}`)
+      router.push(`/admin/qna/form/${res.success.id}`)
     }
   } else {
     const res = await qnaApis.update({ qnaItemId: String(params.value.id) }, formData)

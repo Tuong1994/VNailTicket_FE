@@ -3,7 +3,7 @@ export type Query = {
   qnaItemId?: string
   accountId?: string
   imageId?: string
-  limit?: number;
+  limit?: number
 }
 
 export type ResponseSuccess<M = unknown> = {
@@ -17,6 +17,6 @@ export type ResponseError = {
 }
 
 export type Response<M = unknown> = {
-  success: ResponseSuccess<M>
+  success: M
   error: ResponseError | null
 }

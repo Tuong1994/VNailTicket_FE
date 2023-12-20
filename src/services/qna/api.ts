@@ -1,5 +1,5 @@
 import { AxiosClient } from '../axios'
-import type { Query, Response, ResponseSuccess } from '../type'
+import type { Query, Response } from '../type'
 import type { QnA } from './type'
 import { qnaApiPaths } from './paths'
 import utils from '@/utils'
@@ -8,7 +8,7 @@ export const qnaApis = {
   async getList() {
     const res: Response<QnA[]> = utils.defaultResponse<QnA[]>()
     try {
-      const fetch = await AxiosClient.get<ResponseSuccess<QnA[]>>(qnaApiPaths.getList)
+      const fetch = await AxiosClient.get<QnA[]>(qnaApiPaths.getList)
       res.success = fetch.data
     } catch (error: any) {
       res.error = utils.getErrorResponse(error)
@@ -19,7 +19,7 @@ export const qnaApis = {
   async getDetail(query: Query) {
     const res: Response<QnA> = utils.defaultResponse<QnA>()
     try {
-      const fetch = await AxiosClient.get<ResponseSuccess<QnA>>(qnaApiPaths.getDetail + utils.getQuery(query))
+      const fetch = await AxiosClient.get<QnA>(qnaApiPaths.getDetail + utils.getQuery(query))
       res.success = fetch.data
     } catch (error) {
       res.error = utils.getErrorResponse(error)
@@ -30,7 +30,7 @@ export const qnaApis = {
   async create(data: QnA) {
     const res: Response<QnA> = utils.defaultResponse<QnA>()
     try {
-      const fetch = await AxiosClient.post<ResponseSuccess<QnA>>(qnaApiPaths.create, data)
+      const fetch = await AxiosClient.post<QnA>(qnaApiPaths.create, data)
       res.success = fetch.data
     } catch (error) {
       res.error = utils.getErrorResponse(error)
@@ -41,7 +41,7 @@ export const qnaApis = {
   async update(query: Query, data: QnA) {
     const res: Response<any> = utils.defaultResponse<any>()
     try {
-      const fetch = await AxiosClient.put<ResponseSuccess<any>>(
+      const fetch = await AxiosClient.put<any>(
         qnaApiPaths.update + utils.getQuery(query),
         data
       )
@@ -55,7 +55,7 @@ export const qnaApis = {
   async remove(query: Query) {
     const res: Response<any> = utils.defaultResponse<any>()
     try {
-      const fetch = await AxiosClient.delete<ResponseSuccess<any>>(qnaApiPaths.remove + utils.getQuery(query))
+      const fetch = await AxiosClient.delete<any>(qnaApiPaths.remove + utils.getQuery(query))
       res.success = fetch.data
     } catch (error) {
       res.error = utils.getErrorResponse(error)

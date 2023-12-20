@@ -1,4 +1,4 @@
-import type { Query, Response, ResponseSuccess } from '../type'
+import type { Query, Response } from '../type'
 import type { Account, AuthResponse } from './type'
 import { AxiosClient } from '../axios'
 import { authApiPaths } from './paths'
@@ -9,7 +9,7 @@ export const authApis = {
   async signIn(account: Account) {
     const res: Response<AuthResponse> = utils.defaultResponse<AuthResponse>()
     try {
-      const fetch = await AxiosClient.post<ResponseSuccess<AuthResponse>>(authApiPaths.signIn, account)
+      const fetch = await AxiosClient.post<AuthResponse>(authApiPaths.signIn, account)
       localStorage.setItem(AuthConst.LOCAL_STORAGE_KEY, JSON.stringify(fetch.data))
       res.success = fetch.data
     } catch (error) {
@@ -21,7 +21,7 @@ export const authApis = {
   async refresh(query: Query) {
     const res: Response<AuthResponse> = utils.defaultResponse<AuthResponse>()
     try {
-      const fetch = await AxiosClient.post<ResponseSuccess<AuthResponse>>(
+      const fetch = await AxiosClient.post<AuthResponse>(
         authApiPaths.refresh + utils.getQuery(query)
       )
       if (localStorage.getItem(AuthConst.LOCAL_STORAGE_KEY)) {
@@ -39,7 +39,7 @@ export const authApis = {
   async logout(query: Query) {
     const res: Response<any> = utils.defaultResponse<any>()
     try {
-      const fetch = await AxiosClient.post<ResponseSuccess<any>>(
+      const fetch = await AxiosClient.post<any>(
         authApiPaths.logout + utils.getQuery(query)
       )
       localStorage.removeItem(AuthConst.LOCAL_STORAGE_KEY)
