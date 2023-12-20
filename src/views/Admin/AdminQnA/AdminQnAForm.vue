@@ -17,16 +17,16 @@ const messageApi = useMessage()
 
 const router = useRouter()
 
-const params = computed(() => router.currentRoute.value.params)
-
-const isEdit = computed<boolean>(() => params.value.id && params.value.id !== '0')
-
 const loading = ref<boolean>(false)
 
 const initialValues = ref<QnA>({
   title: '',
   content: ''
 })
+
+const params = computed(() => router.currentRoute.value.params)
+
+const isEdit = computed<boolean>(() => params.value.id && params.value.id !== '0')
 
 const getQnA = async () => {
   if (!isEdit.value) return
@@ -62,7 +62,7 @@ const handleSubmit = async (formData: QnA) => {
   <Form :initialValues="initialValues" @onFinish="handleSubmit">
     <Input name="title" placeholder="Title" :rule="yup.string().required('This field is required')" />
 
-    <TextEditor name="content" />
+    <TextEditor name="content" :rule="yup.string().required('This field is required')" />
 
     <div class="content-footer">
       <Row justify="between">

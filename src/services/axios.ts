@@ -11,7 +11,7 @@ const DEVELOPMENT_BASE_URL = 'http://localhost:5000'
 const PRODUCTION_BASE_URL = 'https://vnailticket-api.onrender.com'
 
 const getBaseUrl = () => {
-  if (process.env.NODE_ENV === 'development') return DEVELOPMENT_BASE_URL
+  // if (process.env.NODE_ENV === 'development') return DEVELOPMENT_BASE_URL
   return PRODUCTION_BASE_URL
 }
 

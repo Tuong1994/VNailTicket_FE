@@ -10,7 +10,7 @@ import {
   inject,
   type StyleValue
 } from 'vue'
-import { useField } from 'vee-validate'
+import { useField, validate } from 'vee-validate'
 import type { ComponentSize } from '@/common/type.ts'
 import type { FormRule, ControlColor, ControlShape } from '@/components/Control/type.ts'
 import { iconName } from '@/components/UI/Icon/constant.ts'
