@@ -4,6 +4,7 @@ import { UI, Control } from '@/components'
 import { Image } from '@/services/image/type.ts'
 import { imageApis } from '@/services/image/api.ts'
 import { getImages } from '@/store/image/actions.ts'
+import PageLoading from '@/views/components/PageLoading.vue'
 import useImageStore from '@/store/image/ImageStore.ts'
 import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
 
@@ -89,11 +90,14 @@ const handleAddMore = async () => {
   limit.value = amounts
   loading.value = false
 }
+
+onMounted(() => getImages(5, messageApi, imageStore.addImages, loading))
 </script>
 
 <template>
   <div class="admin-gallery-list">
-    <div class="list-inner">
+    <PageLoading v-if="loading" />
+    <div v-if="!loading" class="list-inner">
       <div v-for="image in imageStore.images.data" :key="image.id" class="inner-image">
         <Image
           hasView
@@ -126,6 +130,7 @@ const handleAddMore = async () => {
       rootClassName="upload-images-modal"
       :okButtonProps="{ loading, disabled: imagesUpload.length === 0 }"
       :open="open"
+      okButtonTitle="Upload"
       @onOk="handleUpload"
       @onClose="handleClose"
     >

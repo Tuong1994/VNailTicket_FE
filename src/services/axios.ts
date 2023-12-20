@@ -7,10 +7,16 @@ import utils from '@/utils'
 
 const { UNAUTHORIZED, FORBIDDEN, NOT_FOUND } = HttpStatus
 
-const BASE_URL = 'http://localhost:5000'
+const DEVELOPMENT_BASE_URL = 'http://localhost:5000'
+const PRODUCTION_BASE_URL = 'https://vnailticket-api.onrender.com'
+
+const getBaseUrl = () => {
+  if (process.env.NODE_ENV === 'development') return DEVELOPMENT_BASE_URL
+  return PRODUCTION_BASE_URL
+}
 
 export const AxiosClient = axios.create({
-  baseURL: BASE_URL,
+  baseURL: getBaseUrl(),
   withCredentials: true
 })
 
@@ -52,7 +58,7 @@ AxiosClient.interceptors.response.use(
         config._retry = true
 
         try {
-          const apiPath = BASE_URL + authApiPaths.refresh + utils.getQuery({ accountId: info.id })
+          const apiPath = getBaseUrl() + authApiPaths.refresh + utils.getQuery({ accountId: info.id })
           const res = await axios.post(apiPath)
           const data = res.data
           const newAuth: AuthResponse = {

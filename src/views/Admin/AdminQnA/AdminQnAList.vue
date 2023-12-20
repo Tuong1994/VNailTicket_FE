@@ -5,6 +5,7 @@ import { iconName } from '@/components/UI/Icon/constant.ts'
 import { QnA } from '@/services/qna/type.ts'
 import { qnaApis } from '@/services/qna/api.ts'
 import { getQnAItems } from '@/store/qna/actions.ts'
+import PageLoading from '@/views/components/PageLoading.vue'
 import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
 import useQnAStore from '@/store/qna/QnAStore.ts'
 import utils from '@/utils'
@@ -40,11 +41,13 @@ const handleRemoveItem = async (id: string) => {
   loading.value = false
 }
 
-onMounted(() => getQnAItems(messageApi, qnaStore.addQnaItems))
+onMounted(() => getQnAItems(messageApi, qnaStore.addQnaItems, loading))
 </script>
 
 <template>
-  <div class="admin-qna-list">
+  <PageLoading v-if="loading" />
+
+  <div class="admin-qna-list" v-if="!loading">
     <Accordion
       v-for="(item, idx) in qnaStore.qnaItems"
       :key="item.id"
