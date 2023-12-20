@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, withDefaults, type StyleValue } from 'vue'
-import { iconType } from './constant.ts'
+import { computed, withDefaults, toRefs, type StyleValue } from 'vue'
+import { iconType } from './constant'
 
 export interface IconProps {
   rootClassName?: string | string[]
@@ -15,7 +15,9 @@ const props = withDefaults(defineProps<IconProps>(), {
   type: iconType.FAS
 })
 
-const iconStyle = computed<StyleValue>(() => ({ ...props.rootStyle, fontSize: `${props.size}px` }))
+const { rootStyle } = toRefs(props)
+
+const iconStyle = computed<StyleValue>(() => ({ ...rootStyle, fontSize: `${props.size}px` }))
 </script>
 
 <template>

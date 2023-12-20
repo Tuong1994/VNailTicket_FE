@@ -3,9 +3,9 @@ import * as yup from 'yup'
 import { ref, computed, onMounted } from 'vue'
 import { UI, Control } from '@/components'
 import { useRouter } from 'vue-router'
-import { QnA } from '@/services/qna/type.ts'
-import { qnaApis } from '@/services/qna/api.ts'
-import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
+import type { QnA } from '@/services/qna/type'
+import { qnaApis } from '@/services/qna/api'
+import useMessage from '@/components/UI/ToastMessage/useMessage'
 
 const { Space, Grid, Button } = UI
 
@@ -26,13 +26,13 @@ const initialValues = ref<QnA>({
 
 const params = computed(() => router.currentRoute.value.params)
 
-const isEdit = computed<boolean>(() => params.value.id && params.value.id !== '0')
+const isEdit = computed<boolean>(() => Boolean(params.value.id && params.value.id !== '0'))
 
 const getQnA = async () => {
   if (!isEdit.value) return
-  const res = await qnaApis.getDetail({ qnaItemId: params.value.id })
+  const res = await qnaApis.getDetail({ qnaItemId: String(params.value.id) })
   if (res.error) return messageApi.error('Api network error')
-  initialValues.value = res.success
+  initialValues.value = res.success.data
 }
 
 onMounted(() => getQnA())
@@ -44,10 +44,10 @@ const handleSubmit = async (formData: QnA) => {
     if (res.error) messageApi.error('Create error')
     else {
       messageApi.success('Created success')
-      router.push(`/admin/qna/form/${res.success.id}`)
+      router.push(`/admin/qna/form/${res.success.data.id}`)
     }
   } else {
-    const res = await qnaApis.update({ qnaItemId: params.value.id }, formData)
+    const res = await qnaApis.update({ qnaItemId: String(params.value.id) }, formData)
     if (res.error) messageApi.error('Update error')
     else {
       messageApi.success('Updated success')

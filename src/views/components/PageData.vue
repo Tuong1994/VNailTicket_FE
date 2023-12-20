@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { AuthConst } from '@/services/auth/constant'
-import { getQnAItems } from '@/store/qna/actions.ts'
-import { getImages } from '@/store/image/actions.ts'
-import useAuthStore from '@/store/auth/AuthStore.ts'
-import useQnAStore from '@/store/qna/QnAStore.ts'
-import useImageStore from '@/store/image/ImageStore.ts'
-import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
+import { getQnAItems } from '@/store/qna/actions'
+import { getImages } from '@/store/image/actions'
+import useAuthStore from '@/store/auth/AuthStore'
+import useQnAStore from '@/store/qna/QnAStore'
+import useImageStore from '@/store/image/ImageStore'
+import useMessage from '@/components/UI/ToastMessage/useMessage'
 
 const { addAuth } = useAuthStore()
 

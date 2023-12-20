@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { withDefaults, type StyleValue } from 'vue'
 import Icon from '@/components/UI/Icon/Icon.vue'
-import useListStore from './ListStore.ts'
+import useListStore from './ListStore'
 
 export interface ListItemProps {
   rootClassName?: string

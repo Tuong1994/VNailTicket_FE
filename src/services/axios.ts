@@ -4,6 +4,7 @@ import type { AuthResponse } from './auth/type'
 import { HttpStatus } from './http'
 import { authApiPaths } from './auth/paths'
 import utils from '@/utils'
+// import process from 'process'
 
 const { UNAUTHORIZED, FORBIDDEN, NOT_FOUND } = HttpStatus
 

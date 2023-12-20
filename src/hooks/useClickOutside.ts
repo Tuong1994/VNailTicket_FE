@@ -1,6 +1,6 @@
 import { type Ref, watchEffect } from 'vue'
 
-const useClickOutSide = (ref: Ref<HTMLElement>, trigger: Ref<boolean>) => {
+const useClickOutSide = (ref: Ref<HTMLElement | undefined>, trigger: Ref<boolean>) => {
   const handleClickOutside = (e: any) => {
     if (ref.value && !ref.value.contains(e.target)) {
       trigger.value = false

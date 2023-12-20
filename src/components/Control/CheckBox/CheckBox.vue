@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, computed, withDefaults, useSlots, watchEffect, toRefs, inject, type StyleValue } from 'vue'
 import { useField } from 'vee-validate'
-import type { FormRule } from '@/components/Control/type.ts'
-import type { ComponentSize, ComponentColor } from '@/common/type.ts'
-import { iconName } from '@/components/UI/Icon/constant.ts'
+import type { FormRule } from '@/components/Control/type'
+import type { ComponentSize, ComponentColor } from '@/common/type'
+import { iconName } from '@/components/UI/Icon/constant'
 import Icon from '@/components/UI/Icon/Icon.vue'
 import NoteMessage from '@/components/UI/NoteMessage/NoteMessage.vue'
-import useFormStore from '@/components/Control/Form/FormStore.ts'
+import useFormStore from '@/components/Control/Form/FormStore'
 
 export interface CheckBoxProps {
   rootClassName?: string
@@ -21,7 +21,7 @@ export interface CheckBoxProps {
   name?: string
   checked?: boolean
   disabled?: boolean
-  rule?: FormRule
+  rule?: any
 }
 
 const props = withDefaults(defineProps<CheckBoxProps>(), {
@@ -34,7 +34,7 @@ const props = withDefaults(defineProps<CheckBoxProps>(), {
   checked: false
 })
 
-const form = inject('form', null)
+const form = inject('form', null) as any
 
 const { name } = toRefs(props)
 
@@ -56,7 +56,7 @@ const isCheck = ref<boolean>(false)
 
 const hasLabel = computed<boolean>(() => slots.default !== undefined)
 
-const controlValue = computed<string>(() => (form?.isVee ? veeValue?.value : props.value))
+const controlValue = computed(() => (form?.isVee ? veeValue?.value : props.value))
 
 const controlColor = computed<ComponentColor>(() => (form?.isVee ? form?.formColor : props.color))
 
@@ -86,7 +86,7 @@ const handleChange = (e: Event) => {
   isCheck.value = checked
 
   if (form?.isVee) {
-    if (!props.value) return setValue(checked)
+    if (!props.value) return setValue(checked as any)
     else return veeOnChange(veeValue.value)
   }
 

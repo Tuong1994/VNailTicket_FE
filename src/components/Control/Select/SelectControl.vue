@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, withDefaults, useSlots, watchEffect, toRef, type StyleValue } from 'vue'
-import { iconName } from '@/components/UI/Icon/constant.ts'
+import { iconName } from '@/components/UI/Icon/constant'
 import Icon from '@/components/UI/Icon/Icon.vue'
 import Spinner from '@/components/UI/Loading/Spinner.vue'
 
@@ -40,7 +40,7 @@ const handleSearch = (e: Event) => emits('onSearch', e)
 const handleClearInput = () => emits('onClearInput')
 
 watchEffect(() => {
-  if (errorMessage?.value) controlRef.value.click()
+  if (errorMessage?.value) controlRef?.value?.click()
 })
 </script>
 

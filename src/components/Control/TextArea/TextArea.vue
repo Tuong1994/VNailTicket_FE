@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, computed, withDefaults, useSlots, toRef, watchEffect, inject, type StyleValue } from 'vue'
 import { useField } from 'vee-validate'
-import type { ComponentSize } from '@/common/type.ts'
-import type { FormRule, ControlColor, ControlShape } from '@/components/Control/type.ts'
-import { iconName } from '@/components/UI/Icon/constant.ts'
+import type { ComponentSize } from '@/common/type'
+import type { FormRule, ControlColor, ControlShape } from '@/components/Control/type'
+import { iconName } from '@/components/UI/Icon/constant'
 import Icon from '@/components/UI/Icon/Icon.vue'
 import NoteMessage from '@/components/UI/NoteMessage/NoteMessage.vue'
-import useFormStore from '@/components/Control/Form/FormStore.ts'
+import useFormStore from '@/components/Control/Form/FormStore'
 
 export interface TextAreaProps {
   rootClassName?: string
@@ -24,7 +24,7 @@ export interface TextAreaProps {
   disabled?: boolean
   rows?: number
   cols?: number
-  rule?: FormRule
+  rule?: any
 }
 
 const props = withDefaults(defineProps<TextAreaProps>(), {
@@ -35,11 +35,12 @@ const props = withDefaults(defineProps<TextAreaProps>(), {
   color: 'blue',
   shape: 'square',
   placeholder: 'Type...',
+  modelValue: '',
   name: '',
   rows: 5
 })
 
-const form = inject('form', null)
+const form = inject('form', null) as any
 
 const name = toRef(props, 'name')
 
@@ -59,7 +60,7 @@ const emits = defineEmits(['update:modelValue'])
 
 const inputRef = ref<HTMLInputElement | null>(null)
 
-const controlValue = computed<string>(() => (form?.isVee ? veeValue?.value : props.modelValue))
+const controlValue = computed(() => (String(form?.isVee ? veeValue?.value : props.modelValue)))
 
 const controlColor = computed<ControlColor>(() => (form?.isVee ? form?.formColor : props.color))
 
@@ -69,7 +70,9 @@ const controlSize = computed<ComponentSize>(() => (form?.isVee ? form?.formSize 
 
 const hasLabel = computed<boolean>(() => slots.label !== undefined)
 
-const showClearIcon = computed<boolean>(() => (form?.isVee ? Boolean(veeValue?.value) : props.modelValue))
+const showClearIcon = computed<boolean>(() =>
+  Boolean(form?.isVee) ? Boolean(veeValue?.value) : Boolean(props.modelValue)
+)
 
 const colorClassName = computed<string>(() => `textarea-${controlColor.value}`)
 
@@ -99,7 +102,7 @@ const handleClearInput = () => (form?.isVee ? setValue('') : emits('update:model
 const onChangeFn = form?.isVee ? veeOnChange : handleChange
 
 watchEffect(() => {
-  if (errorMessage?.value) inputRef.value.click()
+  if (errorMessage?.value) inputRef?.value?.click()
 })
 </script>
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, withDefaults, type StyleValue } from 'vue'
-import type { TypoAlign, TypoVariant } from './type.ts'
+import { computed, withDefaults, toRefs, type StyleValue } from 'vue'
+import type { TypoAligns, TypoVariant } from './type'
 
 export interface ParagraphProps {
   rootClassName?: string
@@ -12,7 +12,7 @@ export interface ParagraphProps {
   underline?: boolean
   remove?: boolean
   variant?: TypoVariant
-  aligns?: TypoAlign
+  aligns?: TypoAligns
 }
 
 const props = withDefaults(defineProps<ParagraphProps>(), {
@@ -21,6 +21,8 @@ const props = withDefaults(defineProps<ParagraphProps>(), {
   variant: 'default',
   aligns: 'left'
 })
+
+const { rootStyle } = toRefs(props)
 
 const alignsClassName = computed<string>(() => `paragraph-${props.aligns}`)
 
@@ -34,7 +36,7 @@ const italicClassName = computed<string>(() => (props.italic ? 'paragraph-italic
 
 const strongClassName = computed<string>(() => (props.strong ? 'paragraph-strong' : ''))
 
-const inlineStyle = computed<StyleValue>(() => ({ ...props.rootStyle, fontSize: `${props.size}px` }))
+const inlineStyle = computed<StyleValue>(() => ({ ...rootStyle, fontSize: `${props.size}px` }))
 </script>
 
 <template>

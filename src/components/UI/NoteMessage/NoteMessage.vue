@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, withDefaults, type StyleValue } from 'vue'
-import type { ComponentSize } from '@/common/type.ts'
+import { computed, withDefaults, toRefs, type StyleValue } from 'vue'
+import type { ComponentSize } from '@/common/type'
 
 type MessageType = 'default' | 'error'
 
@@ -22,12 +22,14 @@ const props = withDefaults(defineProps<NoteMessageProps>(), {
   message: 'Note message'
 })
 
+const { rootStyle } = toRefs(props)
+
 const italicClassName = computed<string>(() => (props.italic ? 'note-message-italic' : ''))
 
 const typeClassName = computed<string>(() => `note-message-${props.type}`)
 
 const inlineStyle = computed<StyleValue>(() => {
-  const customStyle: StyleValue = { ...props.rootStyle, fontWeight: props.weight }
+  const customStyle: StyleValue = { ...rootStyle, fontWeight: props.weight }
   if (props.size === 'sm') return { ...customStyle, fontSize: '12px' }
   if (props.size === 'md') return { ...customStyle, fontSize: '14px' }
   if (props.size === 'lg') return { ...customStyle, fontSize: '18px' }

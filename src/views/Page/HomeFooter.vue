@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import { UI } from '@/components'
 import { useRouter } from 'vue-router'
 import LoginModal from './components/LoginModal.vue'
-import useAuthStore from '@/store/auth/AuthStore.ts'
+import useAuthStore from '@/store/auth/AuthStore'
 
 const { Section, Image, Typography, Grid } = UI
 
@@ -26,6 +26,8 @@ const items = computed(() => [
 const handleOpenModal = () => (open.value = true)
 
 const handleCloseModal = () => (open.value = false)
+
+console.log(authStore.auth)
 </script>
 
 <template>

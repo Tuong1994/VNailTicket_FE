@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { UI, Control } from '@/components'
-import { Image } from '@/services/image/type.ts'
-import { imageApis } from '@/services/image/api.ts'
-import { getImages } from '@/store/image/actions.ts'
+import type { Image } from '@/services/image/type'
+import { imageApis } from '@/services/image/api'
+import { getImages } from '@/store/image/actions'
 import PageLoading from '@/views/components/PageLoading.vue'
-import useImageStore from '@/store/image/ImageStore.ts'
-import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
+import useImageStore from '@/store/image/ImageStore'
+import useMessage from '@/components/UI/ToastMessage/useMessage'
 
 const { Button, Modal, Image, Loading } = UI
 
@@ -65,7 +65,7 @@ const handleUpload = async () => {
 const handleSelectImage = (id: string) => {
   const listIds = [...imageIds.value]
   const idx = listIds.indexOf(id)
-  if (idx === -1) return (imageIds.value = [listIds, id])
+  if (idx === -1) return (imageIds.value = [...listIds, id])
   imageIds.value = listIds.filter((imageId) => imageId !== id)
 }
 
@@ -105,7 +105,7 @@ onMounted(() => getImages(5, messageApi, imageStore.addImages, loading))
           :src="image.path"
           lazyType="immediate"
           rootClassName="image-root"
-          @onCheck="() => handleSelectImage(image.id)"
+          @onCheck="() => handleSelectImage(image.id as string)"
         />
       </div>
     </div>

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, computed, withDefaults, watchEffect, useSlots, toRefs, type StyleValue } from 'vue'
-import { iconName } from '@/components/UI/Icon/constant.ts'
+import { iconName } from '@/components/UI/Icon/constant'
 import type { ComponentSize } from '@/common/type'
 import Button, { type ButtonProps } from '@/components/UI/Button/Button.vue'
 import Icon from '@/components/UI/Icon/Icon.vue'
-import useRender from '@/hooks/useRender.ts'
-import useOverflow from '@/hooks/useOverflow.ts'
+import useRender from '@/hooks/useRender'
+import useOverflow from '@/hooks/useOverflow'
 
 export interface ModalProps {
   rootClassName?: string
@@ -58,11 +58,11 @@ const hasHeadTitle = computed<boolean>(() => slots.head !== undefined)
 
 const sizesClassName = computed<string>(() => `modal-${props.sizes}`)
 
-const hasHeadClassName = computed<boolean>(() => (hasHeadTitle.value ? 'modal-head-flex' : ''))
+const hasHeadClassName = computed<string>(() => (hasHeadTitle.value ? 'modal-head-flex' : ''))
 
-const backdropActiveClassName = computed<boolean>(() => (props.open ? 'modal-backdrop-active' : ''))
+const backdropActiveClassName = computed<string>(() => (props.open ? 'modal-backdrop-active' : ''))
 
-const modalActiveClassName = computed<boolean>(() => (props.open ? 'modal-active' : ''))
+const modalActiveClassName = computed<string>(() => (props.open ? 'modal-active' : ''))
 
 const okActionProps = computed<ButtonProps>(() => ({ ...props.okButtonProps, color: 'blue' }))
 

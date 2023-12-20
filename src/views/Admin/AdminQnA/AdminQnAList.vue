@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed, ref, onMounted } from 'vue'
 import { UI } from '@/components'
-import { iconName } from '@/components/UI/Icon/constant.ts'
-import { QnA } from '@/services/qna/type.ts'
-import { qnaApis } from '@/services/qna/api.ts'
-import { getQnAItems } from '@/store/qna/actions.ts'
+import { iconName } from '@/components/UI/Icon/constant'
+import { qnaApis } from '@/services/qna/api'
+import { getQnAItems } from '@/store/qna/actions'
+import type { QnA } from '@/services/qna/type'
 import PageLoading from '@/views/components/PageLoading.vue'
-import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
-import useQnAStore from '@/store/qna/QnAStore.ts'
+import useMessage from '@/components/UI/ToastMessage/useMessage'
+import useQnAStore from '@/store/qna/QnAStore'
 import utils from '@/utils'
 
 const { Section, Accordion, Space, Icon, Button, Loading } = UI
@@ -55,17 +55,17 @@ onMounted(() => getQnAItems(messageApi, qnaStore.addQnaItems, loading))
       :contentId="`qnaContent-${idx}`"
       :bordered="false"
       :showLabelIcon="false"
-      :rootClassName="`list-qna ${activeIds.includes(item.id) ? 'list-qna-active' : ''}`"
+      :rootClassName="`list-qna ${activeIds.includes(item.id as string) ? 'list-qna-active' : ''}`"
       contentClassName="qna-content"
-      @onCollapse="() => handleCollapse(item.id)"
+      @onCollapse="() => handleCollapse(item.id as string)"
     >
       <div v-html="utils.formatQuill(item.content)"></div>
 
-      <Space justify="right" aligns="center" size="md">
+      <Space justify="end" aligns="middle" size="md">
         <router-link v-if="!loading" :to="`/admin/qna/form/${item.id}`" class="content-icon">
           <Icon :iconName="iconName.PEN_ALT" />
         </router-link>
-        <button v-if="!loading" class="content-icon" @click="() => handleRemoveItem(item.id)">
+        <button v-if="!loading" class="content-icon" @click="() => handleRemoveItem(item.id as string)">
           <Icon :iconName="iconName.TRASH" />
         </button>
         <div v-if="loading" class="content-icon">

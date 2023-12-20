@@ -1,12 +1,12 @@
-<script setup lang="ts" generic="M extends object">
+<script setup lang="ts">
 import { withDefaults, watchEffect, toRef, provide } from 'vue'
 import { Form, useForm } from 'vee-validate'
-import type { ComponentSize } from '@/common/type.ts'
-import type { ControlColor, ControlShape } from '@/components/Control/type.ts'
-import useFormStore from './FormStore.ts'
+import type { ComponentSize } from '@/common/type'
+import type { ControlColor, ControlShape } from '@/components/Control/type'
+import useFormStore from './FormStore'
 
 export interface FormProps {
-  initialValues: M
+  initialValues: any
   color?: ControlColor
   sizes?: ComponentSize
   shape?: ControlShape
@@ -24,7 +24,7 @@ const form = useFormStore()
 
 const initialValues = toRef(props, 'initialValues')
 
-const { handleSubmit } = useForm<M>({ initialValues })
+const { handleSubmit } = useForm({ initialValues })
 
 const onSubmit = handleSubmit((data) => emits('onFinish', data))
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed, withDefaults, type StyleValue } from 'vue'
 import ToastItem from './ToastItem.vue'
-import useToastStore from './ToastStore.ts'
-import useRender from '@/hooks/useRender.ts'
+import useToastStore from './ToastStore'
+import useRender from '@/hooks/useRender'
 
 export interface ToastMessageProps {
   rootClassName?: string

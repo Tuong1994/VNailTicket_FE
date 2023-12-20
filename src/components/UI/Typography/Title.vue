@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { computed, withDefaults, type StypeValue } from 'vue'
-import type { TypoAlign, TypoVariant } from './type.ts'
+import { computed, withDefaults, toRefs, type StyleValue } from 'vue'
+import type { TypoAligns, TypoVariant } from './type'
 
 type TitleLevel = 1 | 2 | 3 | 4 | 5 | 6
 
 export interface TitleProps {
   rootClassName?: string
-  rootStyle?: StypeValue
+  rootStyle?: StyleValue
   italic?: boolean
   remove?: boolean
   underline?: boolean
   level?: TitleLevel
-  aligns?: TypoAlign
+  aligns?: TypoAligns
   variant?: TypoVariant
 }
 
@@ -21,6 +21,8 @@ const props = withDefaults(defineProps<TitleProps>(), {
   variant: 'default',
   level: 1
 })
+
+const { rootClassName, rootStyle } = toRefs(props)
 
 const alignsClassName = computed<string>(() => `title-${props.aligns}`)
 
@@ -32,7 +34,7 @@ const removeClassName = computed<string>(() => (props.remove ? 'title-remove' : 
 
 const italicClassName = computed<string>(() => (props.italic ? 'title-italic' : ''))
 
-const commonProps = computed<TitleProps>(() => ({
+const commonProps = computed(() => ({
   class: [
     'title',
     `title-level-${props.level}`,
@@ -41,9 +43,9 @@ const commonProps = computed<TitleProps>(() => ({
     underlineClassName.value,
     removeClassName.value,
     italicClassName.value,
-    props.rootClassName
+    rootClassName.value
   ],
-  style: props.rootStyle
+  style: rootStyle?.value
 }))
 </script>
 

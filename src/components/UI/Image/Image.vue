@@ -3,7 +3,7 @@ import { ref, computed, withDefaults, watch, toRefs, watchEffect, onMounted, typ
 import type { ComponentSize } from '@/common/type.ts'
 import ImageLoading from './ImageLoading.vue'
 import ImageView from './ImageView.vue'
-import vLazyload from './directive.ts'
+import vLazyload from './directive'
 
 type ImageSize = (ComponentSize & number) | any
 
@@ -36,7 +36,7 @@ const props = withDefaults(defineProps<ImageProps>(), {
 
 const emits = defineEmits(['onClick', 'onRemove', 'onCheck'])
 
-const { src } = toRefs(props)
+const { src, rootStyle } = toRefs(props)
 
 const view = ref<string>('')
 
@@ -52,7 +52,7 @@ const imageSize = computed<StyleValue>(() => {
   return { width: props.sizes, height: props.sizes }
 })
 
-const inlineStyle = computed<StyleValue>(() => ({ ...props.rootStyle, imageSize }))
+const inlineStyle = computed<StyleValue>(() => ({ ...rootStyle, imageSize }))
 
 const handleLoad = () => (loading.value = false)
 

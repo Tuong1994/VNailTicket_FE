@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, withDefaults, watchEffect, toRefs, type StyleValue } from 'vue'
-import type { ToastMessage } from './type.ts'
-import { iconName } from '@/components/UI/Icon/constant.ts'
+import type { ToastMessage } from './type'
+import { iconName } from '@/components/UI/Icon/constant'
 import Icon from '@/components/UI/Icon/Icon.vue'
-import useToastStore from './ToastStore.ts'
+import useToastStore from './ToastStore'
 
 interface ToastItemProps {
   toast: ToastMessage
@@ -70,10 +70,10 @@ watchEffect((onStop) => {
   >
     <div className="item-content">
       <div className="content-icon">
-        <Icon v-if="type === 'success'" :iconName="options.successIconName" />
-        <Icon v-if="type === 'error'" :iconName="options.errorIconName" />
-        <Icon v-if="type === 'warning'" :iconName="options.warningIconName" />
-        <Icon v-if="type === 'info'" :iconName="options.infoIconName" />
+        <Icon v-if="type === 'success'" :iconName="String(options.successIconName)" />
+        <Icon v-if="type === 'error'" :iconName="String(options.errorIconName)" />
+        <Icon v-if="type === 'warning'" :iconName="String(options.warningIconName)" />
+        <Icon v-if="type === 'info'" :iconName="String(options.infoIconName)" />
       </div>
 
       <div className="content-message">

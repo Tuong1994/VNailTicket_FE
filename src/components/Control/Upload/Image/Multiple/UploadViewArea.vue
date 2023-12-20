@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Divider, Image } from '@/components/UI'
-import { UploadItem, UploadItems } from '@/components/Control/type'
+import type { UploadItem, UploadItems } from '@/components/Control/type'
 
 interface ViewAreaProps {
   title: string

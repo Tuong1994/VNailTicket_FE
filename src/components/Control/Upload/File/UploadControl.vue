@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, type StyleValue } from 'vue'
-import type { UploadError } from '@/components/Control/type.ts'
-import { iconName } from '@/components/UI/Icon/constant.ts'
+import type { UploadError } from '@/components/Control/type'
+import { iconName } from '@/components/UI/Icon/constant'
 import Icon from '@/components/UI/Icon/Icon.vue'
 
 interface UploadControlProps {
@@ -11,7 +11,6 @@ interface UploadControlProps {
   multiple?: boolean
   hasLabel: boolean
   dragged: boolean
-  hasLabel: boolean
   error: UploadError | null
   accept: string
 }

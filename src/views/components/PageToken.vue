@@ -2,9 +2,9 @@
 import { ref, onMounted, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { UI } from '@/components'
-import { authApis } from '@/services/auth/api.ts'
-import useAuthStore from '@/store/auth/AuthStore.ts'
-import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
+import { authApis } from '@/services/auth/api'
+import useAuthStore from '@/store/auth/AuthStore'
+import useMessage from '@/components/UI/ToastMessage/useMessage'
 
 const { Modal, Typography, Button, Space } = UI
 
@@ -70,7 +70,7 @@ watchEffect((onStop) => {
     <template #head> Authenticate </template>
     <template #body>
       <Paragraph aligns="center" :size="16">Your login session has been expired, please re-login</Paragraph>
-      <Space justify="right">
+      <Space justify="end">
         <Button color="blue" :loading="loading" rootClassName="refresh-action" @click="handleLogout">
           Logout
         </Button>

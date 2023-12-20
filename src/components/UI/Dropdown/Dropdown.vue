@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed, withDefaults, type StyleValue } from 'vue'
-import type { ComponentPlacement } from '@/common/type.ts'
-import type { DropdownItems } from './type.ts'
-import useRender from '@/hooks/useRender.ts'
-import useClickOutside from '@/hooks/useClickOutside.ts'
+import type { ComponentPlacement } from '@/common/type'
+import type { DropdownItems } from './type'
+import useRender from '@/hooks/useRender'
+import useClickOutside from '@/hooks/useClickOutside'
 
 type TriggerType = 'hover' | 'click'
 
@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<DropdownProps>(), {
 
 const dropdown = ref<boolean>(false)
 
-const dropdownRef = ref<HTMLDivElement | null>(null)
+const dropdownRef = ref<HTMLDivElement>()
 
 useClickOutside(dropdownRef, dropdown)
 

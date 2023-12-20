@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed, type StyleValue } from 'vue'
-import { iconName } from '@/components/UI/Icon/constant.ts'
+import { iconName } from '@/components/UI/Icon/constant'
 import Icon from '@/components/UI/Icon/Icon.vue'
 
 interface UploadControlProps {
   controlClassName?: string
-  controlStyle?: React.CSSProperties
+  controlStyle?: StyleValue
   accept?: string
   disabled?: boolean
   hasLabel: boolean

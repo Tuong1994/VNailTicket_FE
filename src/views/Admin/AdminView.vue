@@ -2,7 +2,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { Control } from '@/components'
-import { SelectOptions } from '@/components/Control/type.ts'
+import type { SelectOptions } from '@/components/Control/type'
 import AdminHeader from './AdminHeader.vue'
 
 const { Select, TextArea } = Control

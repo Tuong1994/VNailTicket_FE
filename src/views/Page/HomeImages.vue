@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { UI } from '@/components'
-import { Image } from '@/services/image/type.ts'
-import { getImages } from '@/store/image/actions.ts'
-import useImageStore from '@/store/image/ImageStore.ts'
-import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
+import type { Image } from '@/services/image/type'
+import { getImages } from '@/store/image/actions'
+import useImageStore from '@/store/image/ImageStore'
+import useMessage from '@/components/UI/ToastMessage/useMessage'
 
 const { Section, Image, Typography, Loading } = UI
 
@@ -21,7 +21,7 @@ const limit = ref<number>(5)
 const loading = ref<boolean>(false)
 
 const showAddMore = computed<boolean>(
-  () => imageStore.images.data.length > 0 && imageStore.images.totalItems !== imageStore.images.data.length
+  () => imageStore.images?.data?.length > 0 && imageStore.images.totalItems !== imageStore.images?.data?.length
 )
 
 const handleAddMore = async () => {

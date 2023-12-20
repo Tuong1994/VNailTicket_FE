@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, withDefaults, useSlots, watchEffect, type StyleValue } from 'vue'
-import { iconName } from '@/components/UI/Icon/constant.ts'
-import useListStore from './ListStore.ts'
+import { iconName } from '@/components/UI/Icon/constant'
+import useListStore from './ListStore'
 
 export interface ListProps {
   rootClassName?: string

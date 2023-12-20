@@ -6,12 +6,12 @@ import type { ResponseSuccess } from '@/services/type'
 
 export const getQnAItems = async (
   messageApi: ToastMessageApi,
-  addQnaItems: (items: ResponseSuccess<QnA[]>) => void,
+  addQnaItems: (items: QnA[]) => void,
   loading?: Ref<boolean>
 ) => {
   if (loading) loading.value = true
   const res = await qnaApis.getList()
   if (res.error) messageApi.error('Api network error')
-  else addQnaItems(res.success)
+  else addQnaItems(res.success as any)
   if (loading) loading.value = false
 }

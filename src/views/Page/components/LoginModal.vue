@@ -2,10 +2,10 @@
 import * as yup from 'yup'
 import { ref } from 'vue'
 import { UI, Control } from '@/components'
-import type { Account } from '@/services/auth/type.ts'
-import { authApis } from '@/services/auth/api.ts'
-import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
-import useAuthStore from '@/store/auth/AuthStore.ts'
+import type { Account } from '@/services/auth/type'
+import { authApis } from '@/services/auth/api'
+import useMessage from '@/components/UI/ToastMessage/useMessage'
+import useAuthStore from '@/store/auth/AuthStore'
 
 const { Modal, Button, Typography, Space } = UI
 
@@ -41,7 +41,7 @@ const handleSubmit = async (formData: Account) => {
     messageApi.error(res.error.message)
     return (loading.value = false)
   }
-  addAuth(res.success)
+  addAuth(res.success as any)
   messageApi.success('Sign in success')
   loading.value = false
   handleClose()

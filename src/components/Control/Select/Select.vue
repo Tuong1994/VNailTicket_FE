@@ -2,12 +2,12 @@
 import { ref, computed, withDefaults, useSlots, toRef, watchEffect, inject, type StyleValue } from 'vue'
 import { useField } from 'vee-validate'
 import { useRender, useDetectBottom, useClickOutside } from '@/hooks'
-import type { ComponentSize } from '@/common/type.ts'
-import type { SelectOptions, FormRule, ControlColor, ControlShape } from '@/components/Control/type.ts'
+import type { ComponentSize } from '@/common/type'
+import type { SelectOptions, Option, FormRule, ControlColor, ControlShape } from '@/components/Control/type'
 import SelectControl from './SelectControl.vue'
 import SelectOption from './SelectOption.vue'
 import NoteMessage from '@/components/UI/NoteMessage/NoteMessage.vue'
-import useFormStore from '@/components/Control/Form/FormStore.ts'
+import useFormStore from '@/components/Control/Form/FormStore'
 
 export interface SelectProps {
   rootClassName?: string
@@ -29,7 +29,7 @@ export interface SelectProps {
   hasClear?: boolean
   total?: number
   limit?: number
-  rule?: FormRule
+  rule?: any
 }
 
 const props = withDefaults(defineProps<SelectProps>(), {
@@ -52,7 +52,7 @@ const props = withDefaults(defineProps<SelectProps>(), {
 
 const emits = defineEmits(['onChangeSearch', 'onChangeSelect', 'onChangePage'])
 
-const form = inject('form', null)
+const form = inject('form', null) as any
 
 const name = toRef(props, 'name')
 
@@ -74,7 +74,7 @@ const selectedOption = ref<Option | null>(null)
 
 const search = ref<string>('')
 
-const selectRef = ref<HTMLDivElement | null>(null)
+const selectRef = ref<HTMLDivElement>()
 
 const render = useRender(dropdown)
 
@@ -95,7 +95,7 @@ const hasAddonBefore = computed<boolean>(() => slots.addonBefore !== undefined)
 const hasAddonAfter = computed<boolean>(() => slots.addonAfter !== undefined)
 
 const showClearIcon = computed<boolean>(
-  () => props.hasClear && Boolean((search.value || selectedOption.value) && !props.disabled)
+  () => Boolean(props.hasClear) && Boolean((search.value || selectedOption.value) && !props.disabled)
 )
 
 const totalPages = computed<number>(() => Math.ceil(props.total / props.limit))

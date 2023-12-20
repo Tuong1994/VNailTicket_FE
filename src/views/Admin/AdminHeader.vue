@@ -2,11 +2,11 @@
 import { ref, computed, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import { UI } from '@/components'
-import type { DropdownItems } from '@/components/UI/Dropdown/type.ts'
-import { iconName } from '@/components/UI/Icon/constant.ts'
-import { authApis } from '@/services/auth/api.ts'
-import useAuthStore from '@/store/auth/AuthStore.ts'
-import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
+import type { DropdownItems } from '@/components/UI/Dropdown/type'
+import { iconName } from '@/components/UI/Icon/constant'
+import { authApis } from '@/services/auth/api'
+import useAuthStore from '@/store/auth/AuthStore'
+import useMessage from '@/components/UI/ToastMessage/useMessage'
 
 const { Typography, Loading, Dropdown, Icon } = UI
 
@@ -56,7 +56,7 @@ const handleExist = () => router.push('/')
       <Dropdown :items="items" rootClassName="default-dropdown">
         <template #label>
           <Title rootClassName="dropdown-name">
-            {{ auth.info.account }}
+            {{ auth?.info?.account ?? 'Admin' }}
           </Title>
         </template>
         <template #item="com">

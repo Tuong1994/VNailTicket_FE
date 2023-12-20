@@ -11,13 +11,13 @@ import {
   type StyleValue
 } from 'vue'
 import { useField, validate } from 'vee-validate'
-import type { ComponentSize } from '@/common/type.ts'
-import type { FormRule, ControlColor, ControlShape } from '@/components/Control/type.ts'
-import { iconName } from '@/components/UI/Icon/constant.ts'
+import type { ComponentSize } from '@/common/type'
+import type { FormRule, ControlColor, ControlShape } from '@/components/Control/type'
+import { iconName } from '@/components/UI/Icon/constant'
 import { QuillEditor } from '@vueup/vue-quill'
 import Icon from '@/components/UI/Icon/Icon.vue'
 import NoteMessage from '@/components/UI/NoteMessage/NoteMessage.vue'
-import useFormStore from '@/components/Control/Form/FormStore.ts'
+import useFormStore from '@/components/Control/Form/FormStore'
 import Quill from 'quill'
 import utils from '@/utils'
 import 'quill/dist/quill.snow.css'
@@ -35,8 +35,9 @@ export interface TextEditorProps {
   shape?: ControlShape
   defaultValue?: string
   name?: string
+  modelValue?: string
   disabled?: boolean
-  rule?: FormRule
+  rule?: any
 }
 
 const props = withDefaults(defineProps<TextEditorProps>(), {
@@ -47,10 +48,11 @@ const props = withDefaults(defineProps<TextEditorProps>(), {
   color: 'blue',
   shape: 'square',
   defaultValue: '',
+  modelValue: '',
   name: ''
 })
 
-const form = inject('form', null)
+const form = inject('form', null) as any
 
 const name = toRef(props, 'name')
 

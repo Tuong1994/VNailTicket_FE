@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { UI } from '@/components'
-import { QnA } from '@/services/qna/type.ts'
-import { qnaApis } from '@/services/qna/api.ts'
-import useMessage from '@/components/UI/ToastMessage/useMessage.ts'
-import useQnAStore from '@/store/qna/QnAStore.ts'
+import type { QnA } from '@/services/qna/type'
+import { qnaApis } from '@/services/qna/api'
+import useMessage from '@/components/UI/ToastMessage/useMessage'
+import useQnAStore from '@/store/qna/QnAStore'
 import utils from '@/utils'
 
 const { Section, Typography, Accordion } = UI
@@ -41,13 +41,13 @@ const handleCollapse = (id: string) => {
       :bordered="false"
       rootClassName="qna-item"
       contentClassName="item-content"
-      :labelClassName="`item-label ${activeIds.includes(item.id) ? 'item-label-active' : ''}`"
-      @onCollapse="() => handleCollapse(item.id)"
+      :labelClassName="`item-label ${activeIds.includes(item.id as string) ? 'item-label-active' : ''}`"
+      @onCollapse="() => handleCollapse(item.id as string)"
     >
       <div v-html="utils.formatQuill(item.content)"></div>
       <template #extraLabel>
-        <img v-if="!activeIds.includes(item.id)" src="/images/icons/Arrow 1.png" class="label-icon" />
-        <img v-if="activeIds.includes(item.id)" src="/images/icons/Arrow 2.png" class="label-icon" />
+        <img v-if="!activeIds.includes(item.id as string)" src="/images/icons/Arrow 1.png" class="label-icon" />
+        <img v-if="activeIds.includes(item.id as string)" src="/images/icons/Arrow 2.png" class="label-icon" />
       </template>
     </Accordion>
   </Section>

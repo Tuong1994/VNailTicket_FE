@@ -13,15 +13,15 @@ const dragged = ref<boolean>(false)
 
 const dragEl = ref<HTMLDivElement | null>(null)
 
-const handleTouchStart = (e: TouchEvent) => {
+const handleTouchStart = (e: any) => {
   e.preventDefault()
   e.stopPropagation()
   dragged.value = true
-  touchX.value = e.touches[0].screenX - e.currentTarget.getBoundingClientRect().left
-  touchY.value = e.touches[0].screenY - e.currentTarget.getBoundingClientRect().top
+  touchX.value = e.touches[0].screenX - e.currentTarget?.getBoundingClientRect()?.left
+  touchY.value = e.touches[0].screenY - e.currentTarget?.getBoundingClientRect()?.top
 }
 
-const handleTouchMove = (e: TouchEvent) => {
+const handleTouchMove = (e: any) => {
   e.preventDefault()
   e.stopPropagation()
   if (!dragged.value) return
@@ -35,15 +35,15 @@ const handleTouchMove = (e: TouchEvent) => {
 
 const handleTouchEnd = () => (dragged.value = false)
 
-const handleMouseStart = (e: MouseEvent) => {
+const handleMouseStart = (e: any) => {
   e.preventDefault()
   e.stopPropagation()
   dragged.value = true
-  mouseX.value = e.screenX - e.currentTarget.getBoundingClientRect().left
-  mouseY.value = e.screenY - e.currentTarget.getBoundingClientRect().top
+  mouseX.value = e.screenX - e.currentTarget?.getBoundingClientRect()?.left
+  mouseY.value = e.screenY - e.currentTarget?.getBoundingClientRect()?.top
 }
 
-const handleMouseMove = (e: MouseEvent) => {
+const handleMouseMove = (e: any) => {
   e.preventDefault()
   e.stopPropagation()
   if (!dragged.value) return

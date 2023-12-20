@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, computed, withDefaults, useSlots, watchEffect, type StyleValue } from 'vue'
-import { ACCEPT_FILE_TYPE, DEFAULT_FILE_SIZE } from '../constant.ts'
-import type { UploadItems, ControlColor } from '@/components/Control/type.ts'
+import { ACCEPT_FILE_TYPE, DEFAULT_FILE_SIZE } from '../constant'
+import type { UploadItems, UploadItem, ControlColor, UploadError } from '@/components/Control/type'
 import NoteMessage from '@/components/UI/NoteMessage/NoteMessage.vue'
 import UploadControl from './UploadControl.vue'
 import UploadFiles from './UploadFiles.vue'
-import useFormStore from '@/components/Control/Form/FormStore.ts'
+import useFormStore from '@/components/Control/Form/FormStore'
 import utils from '@/utils'
 
 export interface FileUploadProps {
@@ -62,7 +62,7 @@ const handleUpload = (fileList: File[]) => {
   }
 
   const uploadFiles: UploadItems = fileList.map((file) => ({ id: utils.uuid(), file }))
-  if (!files.length) files.value = uploadFiles
+  if (!files.value.length) files.value = uploadFiles
   else files.value = [...files.value, ...uploadFiles]
   error.value = null
 }
@@ -85,7 +85,7 @@ const handleDrop = (e: DragEvent) => {
   e.preventDefault()
   e.stopPropagation()
   dragged.value = false
-  if (e.dataTransfer.files) {
+  if (e.dataTransfer && e.dataTransfer.files) {
     const uploadFiles: File[] = Array.from(e.dataTransfer.files)
     handleUpload(uploadFiles)
   }

@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, computed, withDefaults, watchEffect, toRef, type StyleValue } from 'vue'
-import type { ComponentShape } from '@/common/type.ts'
-import type { UploadError, ControlColor } from '@/components/Control/type.ts'
-import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from '../../constant.ts'
+import type { ComponentShape } from '@/common/type'
+import type { UploadError, ControlColor } from '@/components/Control/type'
+import { ACCEPT_IMAGE_FILE_TYPE, DEFAULT_FILE_SIZE } from '../../constant'
 import Image from '@/components/UI/Image/Image.vue'
 import UploadControl from './UploadControl.vue'
 import UploadLoading from './UploadLoading.vue'
 import NoteMessage from '@/components/UI/NoteMessage/NoteMessage.vue'
-import useFormStore from '@/components/Control/Form/FormStore.ts'
+import useFormStore from '@/components/Control/Form/FormStore'
 
 export interface SingleImageUploadProps {
   rootClassName?: string
@@ -94,7 +94,7 @@ const handleDrop = (e: DragEvent) => {
   e.preventDefault()
   e.stopPropagation()
   dragged.value = false
-  if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+  if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) {
     const imageFile = e.dataTransfer.files[0]
     handleUpload(imageFile)
   }
@@ -105,7 +105,7 @@ const handleRemove = () => {
   if (image.value && inputEl && inputEl.files) {
     const fileTransfer = new DataTransfer()
     const uploadedImages: File[] = Array.from(inputEl.files)
-    const filterImages: File[] = uploadedImages.filter((img) => img.name !== image.name)
+    const filterImages: File[] = uploadedImages.filter((img) => img.name !== image.value?.name)
 
     filterImages.forEach((file) => {
       const remainImage = new File([file.name], file.name)

@@ -2,7 +2,7 @@
 import { computed, withDefaults } from 'vue'
 import type { ComponentColor, ComponentSize } from '@/common/type'
 import Spinner from '@/components/UI/Loading/Spinner.vue'
-import useFormStore from '@/components/Control/Form/FormStore.ts'
+import useFormStore from '@/components/Control/Form/FormStore'
 
 type ButtonType = 'submit' | 'button' | 'reset'
 
@@ -26,7 +26,7 @@ const form = useFormStore()
 
 const buttonSize = computed<ComponentSize>(() => (form.isVee ? form.formSize : props.sizes))
 
-const buttonColor = computed<ComponentColor>(() => props.color)
+const buttonColor = computed<ComponentColor | undefined>(() => props.color)
 
 const buttonDisabled = computed<boolean>(() => props.disabled || props.loading)
 
@@ -41,6 +41,7 @@ const colorClassName = computed<string>(() => {
   if (props.ghost && !buttonColor.value) return 'button-ghost'
   if (!props.ghost && buttonColor.value) return `button-color button-${buttonColor.value}`
   if (props.ghost && buttonColor.value) return `button-ghost button-ghost-${buttonColor.value}`
+  return ''
 })
 </script>
 
