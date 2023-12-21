@@ -6,7 +6,7 @@ import AdminQnAForm from '@/views/Admin/AdminQnA/AdminQnAForm.vue'
 import AdminContactList from '@/views/Admin/AdminContact/AdminContactList.vue'
 import AdminGalleryList from '@/views/Admin/AdminGallery/AdminGalleryList.vue'
 
-const BASE_URL = 'http://localhost:5173/'
+const BASE_URL = '/'
 
 const routes: Array<RouteRecordRaw> = [
   {
