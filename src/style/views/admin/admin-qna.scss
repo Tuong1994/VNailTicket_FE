@@ -35,3 +35,9 @@
     }
   }
 }
+
+.admin-qna-form {
+  @include respond(lgTablet) {
+    padding-bottom: $p-5;
+  }
+}

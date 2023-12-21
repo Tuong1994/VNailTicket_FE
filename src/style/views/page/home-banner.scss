@@ -15,10 +15,28 @@
       span {
         font-family: 'Trirong Light', sans-serif;
         font-size: $text-2xl;
+        @include respond(mdPhone) {
+          font-size: $text-sm;
+        }
       }
       &:nth-child(1) {
         margin-bottom: $m-1;
       }
+      @include respond(mdPhone) {
+        width: $w-10 * 1.5;
+      }
+    }
+    @include respond(lgTablet) {
+      top: 60rem;
+    }
+    @include respond(smTablet) {
+      top: 55rem;
+    }
+    @include respond(mdPhone) {
+      top: 38rem;
+    }
+    @include respond(smPhone) {
+      top: 27rem;
     }
   }
 }

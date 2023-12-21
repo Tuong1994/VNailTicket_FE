@@ -22,6 +22,9 @@
       left: 50%;
       z-index: 20;
       transform: translateX(-50%);
+      @include respond(mdTablet) {
+        width: $w-full;
+      }
     }
     .content-action {
       width: $w-full;

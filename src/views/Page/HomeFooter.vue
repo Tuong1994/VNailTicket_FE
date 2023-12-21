@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { UI } from '@/components'
 import { useRouter } from 'vue-router'
+import { useViewPoint } from '@/hooks'
 import LoginModal from './components/LoginModal.vue'
 import useAuthStore from '@/store/auth/AuthStore'
 
@@ -10,6 +11,8 @@ const { Section, Image, Typography, Grid } = UI
 const { Row, Col } = Grid
 
 const { Title, Paragraph } = Typography
+
+const { isPhone } = useViewPoint()
 
 const router = useRouter()
 
@@ -22,6 +25,11 @@ const items = computed(() => [
   { id: '2', title: 'Message', path: '/images/icons/Message.png' },
   { id: '3', title: 'Email', path: '/images/icons/Email.png' }
 ])
+
+const imageSize = computed(() => {
+  if (isPhone.value) return 60
+  return 80
+})
 
 const handleOpenModal = () => (open.value = true)
 
@@ -36,7 +44,7 @@ const handleCloseModal = () => (open.value = false)
       <Row justify="evenly" rootClassName="footer-items">
         <Col v-for="item in items" :key="item.id">
           <button type="button" class="items-action">
-            <Image :sizes="80" :src="item.path" class="action-icon" />
+            <Image :sizes="imageSize" :src="item.path" class="action-icon" />
             <Paragraph aligns="center">{{ item.title }}</Paragraph>
           </button>
         </Col>
@@ -44,7 +52,7 @@ const handleCloseModal = () => (open.value = false)
     </Section>
 
     <button class="footer-admin" @click="!authStore.auth ? handleOpenModal() : router.push('/admin')">
-      <Image :sizes="80" src="/images/icons/Admin Button.png" class="admin-icon" />
+      <Image :sizes="imageSize" src="/images/icons/Admin Button.png" class="admin-icon" />
     </button>
 
     <LoginModal :open="open" @onClose="handleCloseModal" />

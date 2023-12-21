@@ -40,5 +40,8 @@ textarea {
   .app-content {
     width: $w-10 * 6;
     margin: auto;
+    @include respond(mdTablet) {
+      width: $w-full;
+    }
   }
 }

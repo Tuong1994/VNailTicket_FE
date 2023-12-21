@@ -9,11 +9,23 @@
     font-family: 'Trirong Bold', sans-serif;
   }
   .section {
-    padding: $p-5 $p-1 + 0.5;
+    padding: $p-5;
     .section-title {
       font-family: 'Abril Regular', sans-serif;
       font-size: $text-large;
       color: $text-blue;
+      @include respond(mdPhone) {
+        font-size: $text-xxl;
+      }
+    }
+    .section-text {
+      font-size: $text-md !important;
+      @include respond(mdPhone) {
+        font-size: $text-sm;
+      }
+    }
+    @include respond(mdPhone) {
+      padding: $p-5 $p-1 + 0.5;
     }
   }
   .home-section-divide {

@@ -59,24 +59,26 @@ const handleSubmit = async (formData: QnA) => {
 </script>
 
 <template>
-  <Form :initialValues="initialValues" @onFinish="handleSubmit">
-    <Input name="title" placeholder="Title" :rule="yup.string().required('This field is required')" />
+  <div class="admin-qna-form">
+    <Form :initialValues="initialValues" @onFinish="handleSubmit">
+      <Input name="title" placeholder="Title" :rule="yup.string().required('This field is required')" />
 
-    <TextEditor name="content" :rule="yup.string().required('This field is required')" />
+      <TextEditor name="content" :rule="yup.string().required('This field is required')" />
 
-    <div class="content-footer">
-      <Row justify="between">
-        <Col :lg="6" :span="6">
-          <router-link to="/admin">
-            <Button rootClassName="content-action" ghost color="red">Close</Button>
-          </router-link>
-        </Col>
-        <Col :lg="18" :span="18">
-          <Button type="submit" :loading="loading" rootClassName="content-action" color="red">
-            {{ !isEdit ? 'Complete' : 'Save' }}
-          </Button>
-        </Col>
-      </Row>
-    </div>
-  </Form>
+      <div class="content-footer">
+        <Row justify="between">
+          <Col :xs="6" :md="6" :lg="6" :span="6">
+            <router-link to="/admin">
+              <Button rootClassName="content-action" ghost color="red">Close</Button>
+            </router-link>
+          </Col>
+          <Col :xs="18" :md="18" :lg="18" :span="18">
+            <Button type="submit" :loading="loading" rootClassName="content-action" color="red">
+              {{ !isEdit ? 'Complete' : 'Save' }}
+            </Button>
+          </Col>
+        </Row>
+      </div>
+    </Form>
+  </div>
 </template>

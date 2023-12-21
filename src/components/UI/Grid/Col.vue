@@ -7,6 +7,7 @@ import useViewPoint from '@/hooks/useViewPoint'
 export interface GridRowProps {
   rootClassName?: string
   rootStyle?: StyleValue
+  isFill?: boolean
   span?: ColSpan
   xs?: ColSpan
   md?: ColSpan
@@ -14,7 +15,7 @@ export interface GridRowProps {
 }
 
 const props = withDefaults(defineProps<GridRowProps>(), {
-  rootClassName: '',
+  rootClassName: ''
 })
 
 const { rootStyle } = toRefs(props)
@@ -30,6 +31,8 @@ const hidden = ref<boolean>(false)
 const inlineStyle = computed<StyleValue>(() => ({ ...rootStyle, width: width.value }))
 
 const gapSize = computed<number>(() => (!grid.gutters.length ? 10 : (grid.gutters[0] as number)))
+
+const fillClassName = computed<string>(() => (props.isFill ? 'grid-col-fill' : ''))
 
 const calculateWidth = (span: ColSpan) => `calc((100% / 24) * ${span} - ${gapSize.value}px)`
 
@@ -66,7 +69,7 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div v-if="!hidden" :style="inlineStyle" :class="['grid-col', rootClassName]">
+  <div v-if="!hidden" :style="inlineStyle" :class="['grid-col', fillClassName, rootClassName]">
     <slot></slot>
   </div>
 </template>

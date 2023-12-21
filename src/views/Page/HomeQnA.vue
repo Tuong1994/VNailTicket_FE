@@ -29,7 +29,7 @@ const handleCollapse = (id: string) => {
   <Section rootClassName="home-qna">
     <Title rootClassName="section-title" aligns="center"> Q & A </Title>
 
-    <Paragraph aligns="center" :size="16">
+    <Paragraph rootClassName="section-text" aligns="center">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis laudantium quod, alias nemo minus fugit?
     </Paragraph>
 

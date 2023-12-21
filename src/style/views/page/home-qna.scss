@@ -2,6 +2,11 @@
   width: $w-full;
   .qna-item {
     margin: $m-2 0;
+    & * {
+      @include respond(mdPhone) {
+        font-size: $text-sm;
+      }
+    }
     .item-label {
       padding: 0;
       .label-title {
